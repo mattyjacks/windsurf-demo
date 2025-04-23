@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rainbow 3D Snake</title>
+    <title>3D Snake Game</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
     <div id="game-container">
         <div id="score">Score: <span id="score-value">0</span></div>
         <div id="game-over" class="hidden">
             <h2>Game Over!</h2>
-            <p>Press Space to Restart</p>
+            <p>Press Space to restart at any time</p>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three-spritetext@1.6.5/dist/three-spritetext.min.js"></script>
     <script src="game.js"></script>
 </body>
 </html>
