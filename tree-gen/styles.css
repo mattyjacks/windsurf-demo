@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    overflow: hidden;
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.canvas-container {
+    flex: 1;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #4CAF50;
+    text-align: center;
+}
+
+h3 {
+    font-size: 16px;
+    margin: 15px 0 10px;
+    color: #81C784;
+}
+
+.controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#randomize-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+#randomize-btn:hover {
+    background-color: #45a049;
+}
+
+.texture-upload {
+    background-color: #2a2a2a;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.preview {
+    width: 100%;
+    height: 60px;
+    background-color: #333;
+    margin-top: 5px;
+    border-radius: 4px;
+    background-size: cover;
+    background-position: center;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 5px;
+    background-color: #333;
+    border: none;
+    border-radius: 4px;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.parameters {
+    background-color: #2a2a2a;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.param-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #bbb;
+}
+
+input[type="range"] {
+    width: 100%;
+    background-color: #333;
+    -webkit-appearance: none;
+    height: 8px;
+    border-radius: 4px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #888;
+    font-size: 12px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+}

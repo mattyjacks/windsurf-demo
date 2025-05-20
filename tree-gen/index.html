@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Procedural Tree Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Tree Generator</h1>
+            <div class="controls">
+                <button id="randomize-btn">Randomize!</button>
+                
+                <div class="texture-upload">
+                    <h3>Bark Texture</h3>
+                    <input type="file" id="bark-texture" accept="image/*">
+                    <div class="preview" id="bark-preview"></div>
+                </div>
+                
+                <div class="texture-upload">
+                    <h3>Leaf Texture</h3>
+                    <input type="file" id="leaf-texture" accept="image/*">
+                    <div class="preview" id="leaf-preview"></div>
+                </div>
+                
+                <div class="parameters">
+                    <h3>Parameters</h3>
+                    <div class="param-group">
+                        <label for="branch-length">Branch Length:</label>
+                        <input type="range" id="branch-length" min="0.5" max="2" step="0.1" value="1">
+                    </div>
+                    
+                    <div class="param-group">
+                        <label for="branch-thickness">Branch Thickness:</label>
+                        <input type="range" id="branch-thickness" min="0.5" max="2" step="0.1" value="1">
+                    </div>
+                    
+                    <div class="param-group">
+                        <label for="leaf-density">Leaf Density:</label>
+                        <input type="range" id="leaf-density" min="0.5" max="2" step="0.1" value="1">
+                    </div>
+                    
+                    <div class="param-group">
+                        <label for="branch-angle">Branch Angle:</label>
+                        <input type="range" id="branch-angle" min="0.2" max="1.2" step="0.1" value="0.7">
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <p>Created with Three.js</p>
+            </div>
+        </div>
+        <div class="canvas-container" id="canvas-container"></div>
+    </div>
+
+    <!-- Load Three.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -46,7 +46,7 @@ class ParticleSystem {
 class Projectile {
     constructor(scene, position, direction, enemies) {
         const geometry = new THREE.SphereGeometry(0.2, 8, 8);
-        const material = new THREE.MeshPhongMaterial({ 
+        const material = new THREE.MeshBasicMaterial({ 
             color: 0xff0000,
             emissive: 0xff0000,
             emissiveIntensity: 0.5
@@ -60,73 +60,9 @@ class Projectile {
         this.target = null;
         this.trackingStrength = 0.15; // How strongly it tracks enemies
         
-        // Add a glowing effect
-        const glow = new THREE.PointLight(0xff0000, 1, 2);
-        this.mesh.add(glow);
-        
         scene.add(this.mesh);
     }
 
-    createFoodIndicators() {
-        // Create arrow indicators to point to food when it's off-screen
-        const arrowGeometry = new THREE.ConeGeometry(0.5, 1, 4);
-        const arrowMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-        
-        this.foodIndicator = new THREE.Mesh(arrowGeometry, arrowMaterial);
-        this.foodIndicator.rotation.x = Math.PI / 2; // Point forward by default
-        this.foodIndicator.visible = false;
-        
-        // Add to scene but don't attach to camera yet
-        this.scene.add(this.foodIndicator);
-    }
-    
-    updateFoodIndicator() {
-        if (!this.food || !this.snake || this.snake.length === 0) return;
-        
-        const head = this.snake[0];
-        const cameraPosition = this.camera.position.clone();
-        
-        // Calculate vector from camera to food
-        const foodDirection = this.food.position.clone().sub(head.position).normalize();
-        
-        // Project food position to screen space
-        const foodScreenPosition = this.food.position.clone().project(this.camera);
-        
-        // Check if food is off-screen
-        const isOffScreen = Math.abs(foodScreenPosition.x) > 0.9 || 
-                           Math.abs(foodScreenPosition.y) > 0.9 ||
-                           foodScreenPosition.z > 1;
-        
-        if (isOffScreen) {
-            // Position the indicator at the edge of the screen in the direction of the food
-            this.foodIndicator.visible = true;
-            
-            // Calculate position at edge of screen
-            const edgeX = Math.sign(foodScreenPosition.x) * 0.85;
-            const edgeY = Math.sign(foodScreenPosition.y) * 0.85;
-            
-            // Clamp to screen edges
-            const screenX = Math.abs(foodScreenPosition.x) > 0.9 ? edgeX : foodScreenPosition.x;
-            const screenY = Math.abs(foodScreenPosition.y) > 0.9 ? edgeY : foodScreenPosition.y;
-            
-            // Convert screen position back to world coordinates at a fixed distance from camera
-            const indicatorDistance = 10;
-            const vector = new THREE.Vector3(screenX, screenY, 0.5);
-            vector.unproject(this.camera);
-            vector.sub(this.camera.position).normalize();
-            
-            const indicatorPos = this.camera.position.clone()
-                .add(vector.multiplyScalar(indicatorDistance));
-            
-            this.foodIndicator.position.copy(indicatorPos);
-            
-            // Point the indicator toward the food
-            this.foodIndicator.lookAt(this.food.position);
-        } else {
-            this.foodIndicator.visible = false;
-        }
-    }
-    
     update() {
         // Find closest enemy to track if we don't have a target
         if (!this.target && this.enemies.length > 0) {
@@ -169,11 +105,8 @@ class Enemy {
     constructor(scene, snakeRef, boardSize) {
         // Use a more alien-like geometry
         const geometry = new THREE.OctahedronGeometry(0.8, 1);
-        const material = new THREE.MeshPhongMaterial({ 
+        const material = new THREE.MeshBasicMaterial({ 
             color: 0x00ff00, // Green alien color
-            emissive: 0x00ff00,
-            emissiveIntensity: 0.3,
-            shininess: 30
         });
         this.mesh = new THREE.Mesh(geometry, material);
         this.scene = scene;
@@ -220,73 +153,9 @@ class Enemy {
             }
         } while (this.mesh.position.distanceTo(snakeRef[0].position) < 15);
         
-        // Add alien glow
-        const glow = new THREE.PointLight(0x00ff00, 0.5, 3);
-        this.mesh.add(glow);
-        
         scene.add(this.mesh);
     }
 
-    createFoodIndicators() {
-        // Create arrow indicators to point to food when it's off-screen
-        const arrowGeometry = new THREE.ConeGeometry(0.5, 1, 4);
-        const arrowMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-        
-        this.foodIndicator = new THREE.Mesh(arrowGeometry, arrowMaterial);
-        this.foodIndicator.rotation.x = Math.PI / 2; // Point forward by default
-        this.foodIndicator.visible = false;
-        
-        // Add to scene but don't attach to camera yet
-        this.scene.add(this.foodIndicator);
-    }
-    
-    updateFoodIndicator() {
-        if (!this.food || !this.snake || this.snake.length === 0) return;
-        
-        const head = this.snake[0];
-        const cameraPosition = this.camera.position.clone();
-        
-        // Calculate vector from camera to food
-        const foodDirection = this.food.position.clone().sub(head.position).normalize();
-        
-        // Project food position to screen space
-        const foodScreenPosition = this.food.position.clone().project(this.camera);
-        
-        // Check if food is off-screen
-        const isOffScreen = Math.abs(foodScreenPosition.x) > 0.9 || 
-                           Math.abs(foodScreenPosition.y) > 0.9 ||
-                           foodScreenPosition.z > 1;
-        
-        if (isOffScreen) {
-            // Position the indicator at the edge of the screen in the direction of the food
-            this.foodIndicator.visible = true;
-            
-            // Calculate position at edge of screen
-            const edgeX = Math.sign(foodScreenPosition.x) * 0.85;
-            const edgeY = Math.sign(foodScreenPosition.y) * 0.85;
-            
-            // Clamp to screen edges
-            const screenX = Math.abs(foodScreenPosition.x) > 0.9 ? edgeX : foodScreenPosition.x;
-            const screenY = Math.abs(foodScreenPosition.y) > 0.9 ? edgeY : foodScreenPosition.y;
-            
-            // Convert screen position back to world coordinates at a fixed distance from camera
-            const indicatorDistance = 10;
-            const vector = new THREE.Vector3(screenX, screenY, 0.5);
-            vector.unproject(this.camera);
-            vector.sub(this.camera.position).normalize();
-            
-            const indicatorPos = this.camera.position.clone()
-                .add(vector.multiplyScalar(indicatorDistance));
-            
-            this.foodIndicator.position.copy(indicatorPos);
-            
-            // Point the indicator toward the food
-            this.foodIndicator.lookAt(this.food.position);
-        } else {
-            this.foodIndicator.visible = false;
-        }
-    }
-    
     update() {
         const direction = new THREE.Vector3()
             .subVectors(this.snakeRef[0].position, this.mesh.position)
@@ -296,9 +165,6 @@ class Enemy {
         // Rotate the enemy for a more dynamic look
         this.mesh.rotation.x += 0.02;
         this.mesh.rotation.y += 0.03;
-        
-        // Pulsating alien glow
-        this.mesh.material.emissiveIntensity = 0.2 + Math.sin(Date.now() * 0.005) * 0.2;
     }
 
     hit() {
@@ -365,10 +231,7 @@ class Game {
         // Create starfield
         this.createStarfield();
         
-        // Create rainbow galaxies
-        this.createRainbowGalaxies();
-        
-        // Create visible walls
+        // Create simplified walls
         this.createWalls();
 
         // Lighting
@@ -378,10 +241,6 @@ class Game {
         const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
         directionalLight.position.set(10, 20, 10);
         this.scene.add(directionalLight);
-        
-        // Add a point light that follows the snake for better visibility
-        this.snakeLight = new THREE.PointLight(0xffffff, 1, 50);
-        this.scene.add(this.snakeLight);
     }
 
     createSnake() {
@@ -389,15 +248,14 @@ class Game {
         
         // Create head with cannon
         const headGeometry = new THREE.BoxGeometry(1, 1, 1);
-        const headMaterial = new THREE.MeshPhongMaterial({
-            color: this.getRainbowColor(0),
-            shininess: 100
+        const headMaterial = new THREE.MeshBasicMaterial({
+            color: this.getRainbowColor(0)
         });
         const head = new THREE.Mesh(headGeometry, headMaterial);
         
         // Add cannon that can rotate
         const cannonGeometry = new THREE.CylinderGeometry(0.1, 0.2, 0.5, 8);
-        const cannonMaterial = new THREE.MeshPhongMaterial({ color: 0x444444 });
+        const cannonMaterial = new THREE.MeshBasicMaterial({ color: 0x444444 });
         this.cannon = new THREE.Mesh(cannonGeometry, cannonMaterial);
         
         // Create a container for the cannon so it can rotate properly
@@ -413,9 +271,8 @@ class Game {
         // Create body segments
         const snakeGeometry = new THREE.BoxGeometry(1, 1, 1);
         for (let i = 1; i < 3; i++) {
-            const material = new THREE.MeshPhongMaterial({
-                color: this.getRainbowColor(i / 3),
-                shininess: 100
+            const material = new THREE.MeshBasicMaterial({
+                color: this.getRainbowColor(i / 3)
             });
             const segment = new THREE.Mesh(snakeGeometry, material);
             segment.position.x = -i;
@@ -428,10 +285,9 @@ class Game {
     }
 
     createFood() {
-        const geometry = new THREE.SphereGeometry(0.5, 16, 16);
-        const material = new THREE.MeshPhongMaterial({
-            color: this.getRainbowColor(Math.random()),
-            shininess: 100
+        const geometry = new THREE.SphereGeometry(0.5, 8, 8);
+        const material = new THREE.MeshBasicMaterial({
+            color: this.getRainbowColor(Math.random())
         });
         this.food = new THREE.Mesh(geometry, material);
         this.repositionFood();
@@ -545,10 +401,6 @@ class Game {
         if (!this.food || !this.snake || this.snake.length === 0) return;
         
         const head = this.snake[0];
-        const cameraPosition = this.camera.position.clone();
-        
-        // Calculate vector from camera to food
-        const foodDirection = this.food.position.clone().sub(head.position).normalize();
         
         // Project food position to screen space
         const foodScreenPosition = this.food.position.clone().project(this.camera);
@@ -602,8 +454,8 @@ class Game {
             projectile.update();
             
             // Remove projectiles that are out of bounds
-            if (Math.abs(projectile.mesh.position.x) > 10 || 
-                Math.abs(projectile.mesh.position.z) > 10) {
+            if (Math.abs(projectile.mesh.position.x) > this.halfBoardSize || 
+                Math.abs(projectile.mesh.position.z) > this.halfBoardSize) {
                 projectile.remove();
                 this.projectiles.splice(i, 1);
                 continue;
@@ -643,9 +495,8 @@ class Game {
         const head = this.snake[0];
         const newHead = new THREE.Mesh(
             head.geometry,
-            new THREE.MeshPhongMaterial({
-                color: this.getRainbowColor(Math.random()),
-                shininess: 100
+            new THREE.MeshBasicMaterial({
+                color: this.getRainbowColor(Math.random())
             })
         );
 
@@ -816,96 +667,6 @@ class Game {
         this.scene.add(gridHelper);
     }
     
-    createRainbowGalaxies() {
-        // Create fewer, simplified rainbow-colored galaxy spirals
-        this.galaxies = [];
-        
-        // Reduced from 5 to 2 galaxies
-        for (let g = 0; g < 2; g++) {
-            const galaxyGeometry = new THREE.BufferGeometry();
-            const galaxyPositions = [];
-            const galaxyColors = [];
-            
-            // Define the galaxy plane (all particles will be in this plane)
-            const planeNormal = new THREE.Vector3(
-                Math.random() - 0.5,
-                Math.random() - 0.5,
-                Math.random() - 0.5
-            ).normalize();
-            
-            // Create two perpendicular vectors in the plane
-            const tempVector = new THREE.Vector3(1, 0, 0);
-            if (Math.abs(planeNormal.dot(tempVector)) > 0.9) {
-                tempVector.set(0, 1, 0);
-            }
-            
-            const xAxis = new THREE.Vector3().crossVectors(planeNormal, tempVector).normalize();
-            const zAxis = new THREE.Vector3().crossVectors(planeNormal, xAxis).normalize();
-            
-            // Create a spiral galaxy with rainbow colors
-            const galaxyArms = 2; // Reduced from 3 to 2 arms
-            const particlesPerArm = 100; // Reduced from 300 to 100 particles
-            
-            for (let arm = 0; arm < galaxyArms; arm++) {
-                const armOffset = (arm / galaxyArms) * Math.PI * 2;
-                
-                for (let i = 0; i < particlesPerArm; i++) {
-                    // Spiral formula
-                    const distance = (i / particlesPerArm) * 15 + Math.random() * 0.5;
-                    const angle = (i / particlesPerArm) * Math.PI * 6 + armOffset;
-                    
-                    // Calculate position in the galaxy plane
-                    const x = Math.cos(angle) * distance;
-                    const z = Math.sin(angle) * distance;
-                    const y = (Math.random() - 0.5) * 0.5; // Small deviation from plane
-                    
-                    // Transform to the galaxy's orientation
-                    const pos = new THREE.Vector3()
-                        .addScaledVector(xAxis, x)
-                        .addScaledVector(planeNormal, y)
-                        .addScaledVector(zAxis, z);
-                    
-                    galaxyPositions.push(pos.x, pos.y, pos.z);
-                    
-                    // Rainbow color based on position in spiral
-                    const hue = (i / particlesPerArm + arm / galaxyArms) % 1;
-                    const color = new THREE.Color().setHSL(hue, 1, 0.5);
-                    galaxyColors.push(color.r, color.g, color.b);
-                }
-            }
-            
-            galaxyGeometry.setAttribute('position', new THREE.Float32BufferAttribute(galaxyPositions, 3));
-            galaxyGeometry.setAttribute('color', new THREE.Float32BufferAttribute(galaxyColors, 3));
-            
-            const galaxyMaterial = new THREE.PointsMaterial({
-                size: 0.2,
-                vertexColors: true,
-                transparent: true,
-                opacity: 0.8
-            });
-            
-            const galaxy = new THREE.Points(galaxyGeometry, galaxyMaterial);
-            
-            // Create a container for the galaxy to handle rotation properly
-            const galaxyContainer = new THREE.Object3D();
-            galaxyContainer.add(galaxy);
-            
-            // Position galaxy further away to be less distracting
-            galaxyContainer.position.set(
-                (Math.random() - 0.5) * 400,
-                (Math.random() - 0.5) * 400,
-                (Math.random() - 0.5) * 400
-            );
-            
-            // Store rotation axis (the normal of the galaxy plane)
-            galaxyContainer.userData.rotationAxis = planeNormal;
-            galaxyContainer.userData.rotationSpeed = 0.0005 + Math.random() * 0.001;
-            
-            this.galaxies.push(galaxyContainer);
-            this.scene.add(galaxyContainer);
-        }
-    }
-    
     animate() {
         requestAnimationFrame(() => this.animate());
         
@@ -918,66 +679,6 @@ class Game {
         // Update game state less frequently
         if (this.frameCount % 10 === 0) {
             this.update();
-        }
-        
-        // Update camera position to follow snake
-        if (this.snake && this.snake.length > 0) {
-            const head = this.snake[0];
-            
-            // Update snake light position
-            if (this.snakeLight) {
-                this.snakeLight.position.copy(head.position);
-                this.snakeLight.position.y += 5;
-            }
-            
-            // Camera following logic
-            const cameraTarget = new THREE.Vector3();
-            cameraTarget.copy(head.position);
-            
-            // Adjust camera height based on distance from center
-            const distanceFromCenter = Math.sqrt(head.position.x * head.position.x + head.position.z * head.position.z);
-            const edgeFactor = Math.min(1, distanceFromCenter / (this.halfBoardSize * 0.7));
-            
-            // Only follow when snake is near the edge
-            if (edgeFactor > 0.5) {
-                // Camera position follows snake but stays at an offset
-                const cameraOffset = new THREE.Vector3(0, 50, 50);
-                const targetCameraPosition = new THREE.Vector3().copy(head.position).add(cameraOffset);
-                
-                // Smooth camera movement
-                this.camera.position.lerp(targetCameraPosition, 0.05);
-                this.camera.lookAt(cameraTarget);
-            } else if (this.cameraResetNeeded) {
-                // Gradually reset camera position when snake is near center
-                const defaultPosition = new THREE.Vector3(0, 50, 50);
-                this.camera.position.lerp(defaultPosition, 0.02);
-                this.camera.lookAt(new THREE.Vector3(0, 0, 0));
-                
-                // Check if camera is close enough to default position
-                if (this.camera.position.distanceTo(defaultPosition) < 1) {
-                    this.cameraResetNeeded = false;
-                }
-            }
-            
-            // Set flag to reset camera when snake returns to center
-            if (edgeFactor > 0.5) {
-                this.cameraResetNeeded = true;
-            }
-        }
-        
-        // Rotate galaxies along their proper axis
-        if (this.galaxies) {
-            this.galaxies.forEach(galaxyContainer => {
-                const axis = galaxyContainer.userData.rotationAxis;
-                const speed = galaxyContainer.userData.rotationSpeed;
-                
-                // Create rotation quaternion around the galaxy's normal axis
-                const rotationQuaternion = new THREE.Quaternion();
-                rotationQuaternion.setFromAxisAngle(axis, speed);
-                
-                // Apply rotation to the galaxy container
-                galaxyContainer.quaternion.premultiply(rotationQuaternion);
-            });
         }
         
         // Rotate stars slightly
