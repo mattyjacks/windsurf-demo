@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emoji Platformer</title>
+  <style>
+    :root {
+      --tile: 48px;
+    }
+    html,body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background:#87ceeb; /* sky */
+      font-family: system-ui, sans-serif;
+    }
+    #game {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    canvas {
+      background: #87ceeb;
+    }
+
+    /* On-screen controls */
+    #controls {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: .5rem;
+      user-select: none;
+    }
+    .btn {
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      border-radius: 12px;
+      border: 2px solid #444;
+      background: #fafafa88;
+      backdrop-filter: blur(4px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .btn:active{background:#ddd}
+  </style>
+</head>
+<body>
+  <div id="game">
+    <canvas id="canvas" width="960" height="480"></canvas>
+  </div>
+
+  <div id="controls">
+    <button class="btn" data-key="ArrowLeft">⬅️</button>
+    <button class="btn" data-key="ArrowRight">➡️</button>
+    <button class="btn" data-key="Space">🆙</button>
+  </div>
+
+  <script>
+    ///////////////////////
+    // Helper functions  //
+    ///////////////////////
+    const keyState = {};
+    const keyMap = { ArrowLeft: 'left', ArrowRight: 'right', Space: 'jump', ArrowUp: 'jump' };
+
+    window.addEventListener('keydown', e => {
+      if (keyMap[e.code] || keyMap[e.key]) {
+        keyState[keyMap[e.code] || keyMap[e.key]] = true;
+        e.preventDefault();
+      }
+    });
+    window.addEventListener('keyup', e => {
+      if (keyMap[e.code] || keyMap[e.key]) {
+        keyState[keyMap[e.code] || keyMap[e.key]] = false;
+        e.preventDefault();
+      }
+    });
+
+    // On-screen buttons emulate key presses
+    document.querySelectorAll('.btn').forEach(btn => {
+      const action = keyMap[btn.dataset.key] || keyMap[btn.innerText];
+      const set = val => (keyState[action] = val);
+      btn.addEventListener('mousedown', () => set(true));
+      btn.addEventListener('touchstart', (e) => {e.preventDefault(); set(true);});
+      ['mouseup','mouseleave','touchend','touchcancel'].forEach(evt=>btn.addEventListener(evt,() => set(false)));
+    });
+
+    ///////////////////////
+    // Game constants    //
+    ///////////////////////
+    const TILE = 48;
+    const GRAVITY = 0.8;
+    const MAX_SPEED_X = 6;
+    const JUMP_VELOCITY = -15;
+    const FRICTION = 0.75;
+
+    ///////////////////////
+    // Level definition  //
+    ///////////////////////
+    // 20 x 10 tiles (use '#' for solid, 'o' for static coins)
+    const level = [
+      '............................',
+      '............................',
+      '.................o..........',
+      '...............oo...........',
+      '..............###...........',
+      '...........#................',
+      '......#.....................',
+      '....................#####...',
+      '############################',
+      '############################',
+    ];
+
+    // Convert into grid of single-width characters for correct indexing
+    const grid = level.map(r => r.split(''));
+    const COLS = grid[0].length;
+    const ROWS = grid.length;
+
+    // Score & frame counter
+    let score = 0;
+    let frame = 0;
+
+    ///////////////////////
+    // Player            //
+    ///////////////////////
+    const player = {
+      x: TILE * 2,
+      y: TILE * 6,
+      w: TILE * .8,
+      h: TILE * .9,
+      vx: 0,
+      vy: 0,
+      onGround: false,
+    };
+
+    // ---------------- Collectibles & Hazards ----------------
+    const coins = [];
+    const bombs = [];
+    const COIN_INTERVAL = 180; // frames
+    const BOMB_INTERVAL = 240;
+    const EXPLODE_TIME = 240;       // 4s at ~60fps
+    const EXPLOSION_DURATION = 60;  // 1s burst
+
+    function rectIntersect(a, b) {
+      return a.x < b.x + TILE && a.x + a.w > b.x && a.y < b.y + TILE && a.y + a.h > b.y;
+    }
+    function dist(x1, y1, x2, y2) {
+      return Math.hypot(x2 - x1, y2 - y1);
+    }
+    function spawnCoin() {
+      coins.push({ x: Math.random() * COLS * TILE, y: -TILE, vy: 0 });
+    }
+    function spawnBomb() {
+      bombs.push({ x: Math.random() * COLS * TILE, y: -TILE, vy: 0, timer: 0, exploded: false });
+    }
+
+    ///////////////////////
+    // Rendering & loop  //
+    ///////////////////////
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = TILE + 'px serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+
+    function tileAt(x, y) {
+      const col = Math.floor(x / TILE);
+      const row = Math.floor(y / TILE);
+      if (row < 0 || row >= ROWS || col < 0 || col >= COLS) return 'empty';
+      return grid[row][col] === '#' ? 'solid' : 'empty';
+    }
+
+    function update() {
+      // Horizontal movement
+      if (keyState.left) {
+        player.vx = Math.max(player.vx - 1, -MAX_SPEED_X);
+      } else if (keyState.right) {
+        player.vx = Math.min(player.vx + 1, MAX_SPEED_X);
+      } else {
+        player.vx *= FRICTION;
+        if (Math.abs(player.vx) < 0.1) player.vx = 0;
+      }
+
+      // Jump
+      if (keyState.jump && player.onGround) {
+        player.vy = JUMP_VELOCITY;
+        player.onGround = false;
+      }
+
+      // Gravity
+      player.vy += GRAVITY;
+
+      // X collision
+      let newX = player.x + player.vx;
+      if (player.vx > 0) {
+        // moving right, check right bottom & top
+        const right = newX + player.w;
+        if (tileAt(right, player.y) === 'solid' || tileAt(right, player.y + player.h - 1) === 'solid') {
+          newX = Math.floor(right / TILE) * TILE - player.w - 0.01;
+          player.vx = 0;
+        }
+      } else if (player.vx < 0) {
+        const left = newX;
+        if (tileAt(left, player.y) === 'solid' || tileAt(left, player.y + player.h - 1) === 'solid') {
+          newX = Math.floor(left / TILE + 1) * TILE + 0.01;
+          player.vx = 0;
+        }
+      }
+      player.x = newX;
+
+      // Y collision
+      let newY = player.y + player.vy;
+      if (player.vy > 0) {
+        // Falling, check bottom left & right
+        const bottom = newY + player.h;
+        if (tileAt(player.x + 2, bottom) === 'solid' || tileAt(player.x + player.w - 2, bottom) === 'solid') {
+          newY = Math.floor(bottom / TILE) * TILE - player.h - 0.01;
+          player.vy = 0;
+          player.onGround = true;
+        }
+      } else if (player.vy < 0) {
+        // Upwards
+        const top = newY;
+        if (tileAt(player.x + 2, top) === 'solid' || tileAt(player.x + player.w - 2, top) === 'solid') {
+          newY = Math.floor(top / TILE + 1) * TILE + 0.01;
+          player.vy = 0;
+        }
+      }
+      player.y = newY;
+
+      // ---------------- Collectibles & Hazards ----------------
+      frame++;
+      if (frame % COIN_INTERVAL === 0) spawnCoin();
+      if (frame % BOMB_INTERVAL === 0) spawnBomb();
+
+      // Coins update
+      for (let i = coins.length - 1; i >= 0; i--) {
+        const c = coins[i];
+        c.vy += GRAVITY * 0.6;
+        c.y += c.vy;
+        if (rectIntersect(player, c)) {
+          coins.splice(i, 1);
+          score++;
+          continue;
+        }
+        if (c.y > ROWS * TILE) coins.splice(i, 1);
+      }
+
+      // Bombs update
+      for (let i = bombs.length - 1; i >= 0; i--) {
+        const b = bombs[i];
+        if (!b.exploded) {
+          b.vy += GRAVITY * 0.6;
+          b.y += b.vy;
+          b.timer++;
+          if (b.timer > EXPLODE_TIME) {
+            b.exploded = true;
+            b.timer = EXPLOSION_DURATION;
+            if (dist(player.x + player.w / 2, player.y + player.h / 2, b.x + TILE / 2, b.y + TILE / 2) < TILE * 1.5) {
+              alert('💥 Game Over!  Score: ' + score);
+              window.location.reload();
+            }
+          }
+        } else {
+          b.timer--;
+          if (b.timer <= 0) bombs.splice(i, 1);
+        }
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Camera offset simple follow
+      const camX = Math.min(Math.max(player.x - canvas.width / 2, 0), COLS * TILE - canvas.width);
+      const camY = 0;
+
+      // Draw level
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const ch = grid[r][c];
+          if (ch === '#') {
+            ctx.fillText('🧱', c * TILE - camX, r * TILE - camY);
+          } else if (ch === 'o') {
+            ctx.fillText('🪙', c * TILE - camX, r * TILE - camY);
+          }
+        }
+      }
+
+      // Coins
+      coins.forEach(c => {
+        ctx.fillText('🪙', c.x - camX, c.y - camY);
+      });
+
+      // Bombs
+      bombs.forEach(b => {
+        ctx.fillText(b.exploded ? '💥' : '💣', b.x - camX, b.y - camY);
+      });
+
+      // Player
+      ctx.fillText('😀', player.x - camX, player.y - camY);
+
+      // Score overlay
+      ctx.save();
+      ctx.font = '24px sans-serif';
+      ctx.fillStyle = '#000';
+      ctx.fillText('Score: ' + score, 10, 10);
+      ctx.restore();
+      ctx.font = TILE + 'px serif';
+    }
+
+    function loop() {
+      update();
+      draw();
+      requestAnimationFrame(loop);
+    }
+    loop();
+  </script>
+</body>
+</html>
