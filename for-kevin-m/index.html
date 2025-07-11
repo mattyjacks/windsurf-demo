@@ -98,6 +98,100 @@
     <!-- Feed / Cards -->
     <main id="feed" class="card-grid"></main>
 
+    <!-- Push Narratives Form -->
+    <section id="push-narratives-form" class="push-narratives-form">
+      <h2>Push Your Narrative</h2>
+      <div class="form-container">
+        <form id="narrativeForm">
+          <div class="form-group">
+            <label for="narrativeTitle">Title</label>
+            <input type="text" id="narrativeTitle" placeholder="Enter narrative title" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="narrativeContent">Content</label>
+            <textarea id="narrativeContent" placeholder="Enter your narrative content" rows="5" required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label>Select Platforms</label>
+            <div class="platform-checkboxes">
+              <div class="platform-checkbox">
+                <input type="checkbox" id="platform-x" value="x">
+                <label for="platform-x"><i class="fab fa-twitter"></i> X (Twitter)</label>
+              </div>
+              <div class="platform-checkbox">
+                <input type="checkbox" id="platform-reddit" value="reddit">
+                <label for="platform-reddit"><i class="fab fa-reddit"></i> Reddit</label>
+              </div>
+              <div class="platform-checkbox">
+                <input type="checkbox" id="platform-instagram" value="instagram">
+                <label for="platform-instagram"><i class="fab fa-instagram"></i> Instagram</label>
+              </div>
+              <div class="platform-checkbox">
+                <input type="checkbox" id="platform-tiktok" value="tiktok">
+                <label for="platform-tiktok"><i class="fab fa-tiktok"></i> TikTok</label>
+              </div>
+              <div class="platform-checkbox">
+                <input type="checkbox" id="platform-facebook" value="facebook">
+                <label for="platform-facebook"><i class="fab fa-facebook"></i> Facebook</label>
+              </div>
+              <div class="platform-checkbox">
+                <input type="checkbox" id="platform-youtube" value="youtube">
+                <label for="platform-youtube"><i class="fab fa-youtube"></i> YouTube</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="scheduledTime">Schedule (Optional)</label>
+            <input type="datetime-local" id="scheduledTime">
+          </div>
+          
+          <div class="form-group">
+            <label for="mediaUpload">Upload Media (Optional)</label>
+            <input type="file" id="mediaUpload" multiple>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn-push">Push Narrative</button>
+            <button type="button" class="btn-save">Save Draft</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools-section" class="tools-section">
+      <h2>Crypto Tools</h2>
+      <div class="tools-grid">
+        <div class="tool-card">
+          <div class="tool-icon"><i class="fas fa-calculator"></i></div>
+          <h3>Profit Calculator</h3>
+          <p>Calculate potential profits based on investment amount and price changes.</p>
+          <button class="tool-btn">Launch Tool</button>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Trend Analyzer</h3>
+          <p>Analyze social media trends and their impact on crypto prices.</p>
+          <button class="tool-btn">Launch Tool</button>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon"><i class="fas fa-bullhorn"></i></div>
+          <h3>Campaign Builder</h3>
+          <p>Create and schedule multi-platform narrative campaigns.</p>
+          <button class="tool-btn">Launch Tool</button>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon"><i class="fas fa-users"></i></div>
+          <h3>Influencer Network</h3>
+          <p>Connect with crypto influencers to amplify your narratives.</p>
+          <button class="tool-btn">Launch Tool</button>
+        </div>
+      </div>
+    </section>
+    
     <!-- Crypto Prices -->
     <section id="crypto-prices" class="crypto-prices">
       <h2>Crypto Prices</h2>
@@ -107,6 +201,27 @@
         </thead>
         <tbody></tbody>
       </table>
+    </section>
+    
+    <!-- Crypto Directories -->
+    <section id="crypto-directories" class="crypto-directories">
+      <h2>Crypto Directories</h2>
+      <div class="directory-search">
+        <input type="text" id="directorySearchInput" placeholder="Search directories..." />
+      </div>
+      <div class="directory-table-container">
+        <table id="directoryTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>URL</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </section>
 
     <!-- Scripts -->
