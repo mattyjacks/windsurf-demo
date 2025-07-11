@@ -116,6 +116,34 @@ nav {
   color: #4b55ff;
 }
 
+/* Crypto Prices */
+.crypto-prices {
+  padding: 30px 20px 60px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.crypto-prices h2 {
+  margin-bottom: 12px;
+  color: #003cff;
+}
+
+#priceTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#priceTable th,
+#priceTable td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#priceTable tr:hover {
+  background: #f3f6ff;
+}
+
 /* Card Grid */
 .card-grid {
   padding: 30px 20px;

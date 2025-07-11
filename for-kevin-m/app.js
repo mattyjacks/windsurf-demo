@@ -31,7 +31,7 @@ const dummyFeed = [
     username: 'CryptoGuru',
     handle: 'u/cryptoguru',
     avatar: '',
-    content: 'Narrative trading is the new alpha… here’s why cross-platform monitoring matters.',
+    content: 'Narrative trading is the new alpha... here\'s why cross-platform monitoring matters.',
     meta: '14.2k upvotes · 612 comments',
   },
   {
@@ -120,3 +120,48 @@ Object.keys(benefitsSections).forEach((key) => {
   benefitsSections[key].style.display = key === 'pull' ? 'block' : 'none';
 });
 renderFeed();
+
+/********************** Crypto Price Checker **********************/
+const coins = [
+  { id: 'bitcoin', symbol: 'BTC' },
+  { id: 'ethereum', symbol: 'ETH' },
+  { id: 'litecoin', symbol: 'LTC' },
+  { id: 'binancecoin', symbol: 'BNB' },
+  { id: 'solana', symbol: 'SOL' },
+  { id: 'ripple', symbol: 'XRP' },
+  { id: 'cardano', symbol: 'ADA' },
+  { id: 'dogecoin', symbol: 'DOGE' },
+  { id: 'avalanche-2', symbol: 'AVAX' },
+  { id: 'polkadot', symbol: 'DOT' },
+  { id: 'chainlink', symbol: 'LINK' },
+  { id: 'matic-network', symbol: 'MATIC' },
+  { id: 'shiba-inu', symbol: 'SHIB' },
+];
+
+async function fetchPrices() {
+  try {
+    const idsParam = coins.map(c => c.id).join(',');
+    const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd`);
+    const data = await res.json();
+    updatePriceTable(data);
+  } catch (err) {
+    console.error('Price fetch error:', err);
+  }
+}
+
+function updatePriceTable(priceData) {
+  const tbody = document.querySelector('#priceTable tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  coins.forEach(({ id, symbol }) => {
+    const tr = document.createElement('tr');
+    const price = priceData[id]?.usd ? `$${priceData[id].usd.toLocaleString()}` : '—';
+    tr.innerHTML = `<td>${symbol}</td><td>${price}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+// Initial fetch and refresh every minute
+fetchPrices();
+setInterval(fetchPrices, 60000);
+/******************** End Price Checker ***************************/
