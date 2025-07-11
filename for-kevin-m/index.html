@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Wizard</title>
+    <!-- Font Awesome for platform icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-LKWAlCbWNIM/ZnY4imGZ6q8bM8goNboWQnRDWc+DIU59Lk3/f0aFQ6wwG7OkyTgWZhehOPwOwBlCthKHuLa6mg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="logo-title">
+        <span class="logo">🧙‍♂️</span>
+        <h1>Crypto Wizard</h1>
+      </div>
+      <nav>
+        <ul class="nav-tabs">
+          <li class="tab active" data-tab="pull">Pull Narratives</li>
+          <li class="tab" data-tab="push">Push Narratives</li>
+          <li class="tab" data-tab="tools">Tools</li>
+          <li class="tab" data-tab="directories">Directories</li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+      <div class="benefit-list" id="benefits-pull">
+        <ul>
+          <li>📈 Profit from Narrative Control</li>
+          <li>📊 Track Real-Time Narratives</li>
+          <li>🌐 Cross-platform expansion</li>
+          <li>🔍 Monitor Emerging Trends (X, Facebook, Reddit, TikTok, YouTube, Instagram & More)</li>
+        </ul>
+      </div>
+      <div class="benefit-list" id="benefits-push">
+        <ul>
+          <li>💰 Save Money with Micro-Influencers</li>
+          <li>🚀 Diversify Your Reach & See extreme growth</li>
+          <li>🎥 Make Videos or Posts, Push Web3 ideas</li>
+          <li>📢 Push Your Campaign • Push Narrative Now</li>
+        </ul>
+      </div>
+      <div class="benefit-list" id="benefits-tools">
+        <ul>
+          <li>🤝 Earn Crypto by Promoting Narratives</li>
+          <li>🛠 Founding Influencer Spots Open → Get 80-85% Commission</li>
+          <li>🏆 Apply Now or ✔️ Start Earning</li>
+        </ul>
+      </div>
+      <div class="benefit-list" id="benefits-directories">
+        <ul>
+          <li>🎯 Recruiter Royalties — Earn 10% per Deal for life</li>
+          <li>🔗 Invite Buyers or Influencers → Get Paid Forever</li>
+          <li>🔰 Start Recruiting</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Search / Platform Filter -->
+    <section class="search-bar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by Platform or Keyword"
+      />
+      <div class="platform-icons">
+        <button class="platform-btn" data-platform="x" title="X (Twitter)">
+          <i class="fa-brands fa-x-twitter"></i>
+        </button>
+        <button class="platform-btn" data-platform="reddit" title="Reddit">
+          <i class="fa-brands fa-reddit"></i>
+        </button>
+        <button class="platform-btn" data-platform="instagram" title="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </button>
+        <button class="platform-btn" data-platform="tiktok" title="TikTok">
+          <i class="fa-brands fa-tiktok"></i>
+        </button>
+        <button class="platform-btn" data-platform="facebook" title="Facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </button>
+        <button class="platform-btn" data-platform="youtube" title="YouTube">
+          <i class="fa-brands fa-youtube"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Feed / Cards -->
+    <main id="feed" class="card-grid"></main>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+  </body>
+</html>
