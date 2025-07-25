@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legendary Windsurfing Webpage League</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-crown"></i>
+                <span>Legendary Windsurfing</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#champions" class="nav-link">Champions</a></li>
+                <li><a href="#stats" class="nav-link">Statistics</a></li>
+                <li><a href="#esports" class="nav-link">Esports</a></li>
+                <li><a href="#leaderboard" class="nav-link">Leaderboard</a></li>
+            </ul>
+            <div class="region-selector">
+                <select id="regionSelect">
+                    <option value="na1">North America</option>
+                    <option value="euw1">Europe West</option>
+                    <option value="eun1">Europe Nordic</option>
+                    <option value="kr">Korea</option>
+                    <option value="jp1">Japan</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-background">
+            <video autoplay muted loop class="hero-video">
+                <source src="https://cmsassets.rgpub.io/sanity/files/dsfx7636/news/b3c6a3b2b7b8b8d6b8e8c8f8a8d8e8f8.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Legendary Windsurfing Webpage League</h1>
+            <p class="hero-subtitle">Master the Rift with Real-Time Statistics and Champion Insights</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('champions')">
+                    <i class="fas fa-search"></i> Explore Champions
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToSection('stats')">
+                    <i class="fas fa-chart-line"></i> View Statistics
+                </button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Patch Information -->
+    <section id="patch-info" class="patch-section">
+        <div class="container">
+            <div class="patch-card">
+                <div class="patch-header">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>Current Patch</h3>
+                </div>
+                <div class="patch-content">
+                    <div class="patch-version" id="patchVersion">Loading...</div>
+                    <div class="patch-notes">
+                        <span id="patchNotes">Fetching latest patch information...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Champion Search and Rotation -->
+    <section id="champions" class="champions-section">
+        <div class="container">
+            <h2 class="section-title">Champions</h2>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="championSearch" placeholder="Search champions...">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Champions</button>
+                    <button class="filter-btn" data-filter="rotation">Free Rotation</button>
+                    <button class="filter-btn" data-filter="assassin">Assassins</button>
+                    <button class="filter-btn" data-filter="fighter">Fighters</button>
+                    <button class="filter-btn" data-filter="mage">Mages</button>
+                    <button class="filter-btn" data-filter="marksman">Marksmen</button>
+                    <button class="filter-btn" data-filter="support">Supports</button>
+                    <button class="filter-btn" data-filter="tank">Tanks</button>
+                </div>
+            </div>
+
+            <!-- Champion Grid -->
+            <div class="champions-grid" id="championsGrid">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading champions...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="stats" class="stats-section">
+        <div class="container">
+            <h2 class="section-title">Champion Statistics</h2>
+            
+            <!-- Stats Dashboard -->
+            <div class="stats-dashboard">
+                <div class="stats-card">
+                    <div class="stats-header">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Top Win Rates</h3>
+                    </div>
+                    <div class="stats-content" id="topWinRates">
+                        <div class="loading-spinner">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-header">
+                        <i class="fas fa-fire"></i>
+                        <h3>Most Popular</h3>
+                    </div>
+                    <div class="stats-content" id="mostPopular">
+                        <div class="loading-spinner">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-header">
+                        <i class="fas fa-ban"></i>
+                        <h3>Most Banned</h3>
+                    </div>
+                    <div class="stats-content" id="mostBanned">
+                        <div class="loading-spinner">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Chart -->
+            <div class="chart-container">
+                <h3>Champion Performance Chart</h3>
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Esports Section -->
+    <section id="esports" class="esports-section">
+        <div class="container">
+            <h2 class="section-title">Esports</h2>
+            
+            <div class="esports-content">
+                <div class="tournaments-card">
+                    <div class="card-header">
+                        <i class="fas fa-medal"></i>
+                        <h3>Recent Tournaments</h3>
+                    </div>
+                    <div class="tournaments-list" id="tournamentsList">
+                        <div class="loading-spinner">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading tournament data...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="matches-card">
+                    <div class="card-header">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>Recent Matches</h3>
+                    </div>
+                    <div class="matches-list" id="matchesList">
+                        <div class="loading-spinner">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading match data...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="leaderboard-section">
+        <div class="container">
+            <h2 class="section-title">Leaderboard</h2>
+            
+            <div class="leaderboard-container">
+                <div class="leaderboard-header">
+                    <div class="rank-tabs">
+                        <button class="rank-tab active" data-tier="challenger">Challenger</button>
+                        <button class="rank-tab" data-tier="grandmaster">Grandmaster</button>
+                        <button class="rank-tab" data-tier="master">Master</button>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-table" id="leaderboardTable">
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading leaderboard...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-crown"></i>
+                    <span>Legendary Windsurfing Webpage League</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <div class="footer-disclaimer">
+                    <p>This product is not affiliated with Riot Games. League of Legends is a trademark of Riot Games, Inc.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
