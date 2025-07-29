@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seacoast Realty NH - Premium Seaside Properties</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-anchor"></i>
+                <span>Seacoast Realty NH</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#properties" class="nav-link">Properties</a>
+                <a href="#analytics" class="nav-link">Analytics</a>
+                <a href="#clients" class="nav-link">Clients</a>
+                <a href="#calendar" class="nav-link">Calendar</a>
+            </div>
+            <div class="nav-profile">
+                <div class="profile-avatar">
+                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Profile">
+                </div>
+                <span>Sarah Johnson</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-background">
+                <img src="https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&w=1920&h=800&fit=crop" alt="New Hampshire Coastline">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome to Your Dashboard</h1>
+                <p class="hero-subtitle">Managing premium seaside properties across New Hampshire's beautiful coast</p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="127">0</div>
+                        <div class="stat-label">Active Listings</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="89">0</div>
+                        <div class="stat-label">Properties Sold</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="15.2">0</div>
+                        <div class="stat-label">Million in Sales</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Grid -->
+        <section class="dashboard-grid">
+            <!-- Quick Actions -->
+            <div class="card quick-actions">
+                <h3 class="card-title">
+                    <i class="fas fa-bolt"></i>
+                    Quick Actions
+                </h3>
+                <div class="action-buttons">
+                    <button class="action-btn primary">
+                        <i class="fas fa-plus"></i>
+                        Add Property
+                    </button>
+                    <button class="action-btn secondary">
+                        <i class="fas fa-calendar-plus"></i>
+                        Schedule Showing
+                    </button>
+                    <button class="action-btn tertiary">
+                        <i class="fas fa-user-plus"></i>
+                        New Client
+                    </button>
+                    <button class="action-btn quaternary">
+                        <i class="fas fa-chart-line"></i>
+                        Generate Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Properties -->
+            <div class="card recent-properties">
+                <h3 class="card-title">
+                    <i class="fas fa-home"></i>
+                    Recent Properties
+                </h3>
+                <div class="properties-list" id="propertiesList">
+                    <!-- Properties will be loaded here -->
+                </div>
+                <button class="view-all-btn">View All Properties</button>
+            </div>
+
+            <!-- Market Analytics -->
+            <div class="card market-analytics">
+                <h3 class="card-title">
+                    <i class="fas fa-chart-area"></i>
+                    Market Analytics
+                </h3>
+                <div class="analytics-content">
+                    <div class="chart-container">
+                        <canvas id="marketChart"></canvas>
+                    </div>
+                    <div class="market-insights">
+                        <div class="insight-item">
+                            <span class="insight-label">Avg. Price</span>
+                            <span class="insight-value">$847K</span>
+                            <span class="insight-change positive">+12%</span>
+                        </div>
+                        <div class="insight-item">
+                            <span class="insight-label">Days on Market</span>
+                            <span class="insight-value">23</span>
+                            <span class="insight-change negative">-8%</span>
+                        </div>
+                        <div class="insight-item">
+                            <span class="insight-label">Inventory</span>
+                            <span class="insight-value">156</span>
+                            <span class="insight-change positive">+5%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Appointments -->
+            <div class="card appointments">
+                <h3 class="card-title">
+                    <i class="fas fa-calendar-alt"></i>
+                    Today's Schedule
+                </h3>
+                <div class="appointments-list" id="appointmentsList">
+                    <!-- Appointments will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Client Activity -->
+            <div class="card client-activity">
+                <h3 class="card-title">
+                    <i class="fas fa-users"></i>
+                    Client Activity
+                </h3>
+                <div class="activity-feed" id="activityFeed">
+                    <!-- Activity will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="card performance-metrics">
+                <h3 class="card-title">
+                    <i class="fas fa-trophy"></i>
+                    Performance Metrics
+                </h3>
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <div class="metric-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">94%</div>
+                            <div class="metric-label">Client Satisfaction</div>
+                        </div>
+                        <div class="metric-progress">
+                            <div class="progress-bar" data-progress="94"></div>
+                        </div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">18</div>
+                            <div class="metric-label">Avg. Days to Close</div>
+                        </div>
+                        <div class="metric-progress">
+                            <div class="progress-bar" data-progress="78"></div>
+                        </div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">4.9</div>
+                            <div class="metric-label">Average Rating</div>
+                        </div>
+                        <div class="metric-progress">
+                            <div class="progress-bar" data-progress="98"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Property Map -->
+        <section class="map-section">
+            <div class="card map-card">
+                <h3 class="card-title">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Property Locations
+                </h3>
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <img src="https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop" alt="New Hampshire Coast Map">
+                        <div class="map-overlay">
+                            <div class="map-marker" style="top: 30%; left: 25%;">
+                                <i class="fas fa-map-pin"></i>
+                                <div class="marker-tooltip">Portsmouth - 12 Properties</div>
+                            </div>
+                            <div class="map-marker" style="top: 45%; left: 35%;">
+                                <i class="fas fa-map-pin"></i>
+                                <div class="marker-tooltip">Hampton Beach - 8 Properties</div>
+                            </div>
+                            <div class="map-marker" style="top: 60%; left: 28%;">
+                                <i class="fas fa-map-pin"></i>
+                                <div class="marker-tooltip">Rye - 15 Properties</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        <p>Loading your dashboard...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="mockData.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
