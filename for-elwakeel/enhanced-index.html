@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seacoast Realty NH - Premium Seaside Properties</title>
+    <link rel="stylesheet" href="enhanced-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-anchor"></i>
+                <span>Seacoast Realty NH</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">Dashboard</a>
+                <a href="#properties" class="nav-link" data-section="properties">Properties</a>
+                <a href="#analytics" class="nav-link" data-section="analytics">Analytics</a>
+                <a href="#clients" class="nav-link" data-section="clients">Clients</a>
+                <a href="#calendar" class="nav-link" data-section="calendar">Calendar</a>
+            </div>
+            <div class="nav-search">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="globalSearch" placeholder="Search properties, clients, locations...">
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+            </div>
+            <div class="nav-profile">
+                <div class="profile-avatar">
+                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Profile">
+                </div>
+                <span>Sarah Johnson</span>
+                <i class="fas fa-chevron-down"></i>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+                    <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="#help"><i class="fas fa-question-circle"></i> Help</a>
+                    <hr>
+                    <a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="content-section active">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-background">
+                    <img src="https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&w=1920&h=800&fit=crop" alt="New Hampshire Coastline">
+                    <div class="hero-overlay"></div>
+                </div>
+                <div class="hero-content">
+                    <h1 class="hero-title">Welcome to Your Dashboard</h1>
+                    <p class="hero-subtitle">Managing premium seaside properties across New Hampshire's beautiful coast</p>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="127">0</div>
+                            <div class="stat-label">Active Listings</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="89">0</div>
+                            <div class="stat-label">Properties Sold</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="15.2">0</div>
+                            <div class="stat-label">Million in Sales</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Map -->
+            <div class="map-section">
+                <div class="card map-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-map-marked-alt"></i>
+                        Interactive Property Map
+                        <div class="map-controls">
+                            <button class="map-btn" id="toggleHeatmap" title="Toggle Heatmap">
+                                <i class="fas fa-fire"></i>
+                            </button>
+                            <button class="map-btn" id="toggleClusters" title="Toggle Clusters">
+                                <i class="fas fa-layer-group"></i>
+                            </button>
+                            <button class="map-btn" id="fullscreenMap" title="Fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </h3>
+                    <div class="map-container">
+                        <div id="propertyMap" class="interactive-map"></div>
+                        <div class="map-legend">
+                            <div class="legend-item">
+                                <div class="legend-color for-sale"></div>
+                                <span>For Sale</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color under-contract"></div>
+                                <span>Under Contract</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color sold"></div>
+                                <span>Sold</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Quick Actions -->
+                <div class="card quick-actions">
+                    <h3 class="card-title">
+                        <i class="fas fa-bolt"></i>
+                        Quick Actions
+                    </h3>
+                    <div class="action-buttons">
+                        <button class="action-btn primary" data-action="add-property">
+                            <i class="fas fa-plus"></i>
+                            Add Property
+                        </button>
+                        <button class="action-btn secondary" data-action="schedule-showing">
+                            <i class="fas fa-calendar-plus"></i>
+                            Schedule Showing
+                        </button>
+                        <button class="action-btn tertiary" data-action="new-client">
+                            <i class="fas fa-user-plus"></i>
+                            New Client
+                        </button>
+                        <button class="action-btn quaternary" data-action="generate-report">
+                            <i class="fas fa-chart-line"></i>
+                            Generate Report
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Properties -->
+                <div class="card recent-properties">
+                    <h3 class="card-title">
+                        <i class="fas fa-home"></i>
+                        Recent Properties
+                    </h3>
+                    <div class="properties-list" id="propertiesList">
+                        <!-- Properties will be loaded here -->
+                    </div>
+                    <button class="view-all-btn" data-section="properties">View All Properties</button>
+                </div>
+
+                <!-- Market Analytics -->
+                <div class="card market-analytics">
+                    <h3 class="card-title">
+                        <i class="fas fa-chart-area"></i>
+                        Market Analytics
+                    </h3>
+                    <div class="analytics-content">
+                        <div class="chart-container">
+                            <canvas id="marketChart"></canvas>
+                        </div>
+                        <div class="market-insights">
+                            <div class="insight-item">
+                                <span class="insight-label">Avg. Price</span>
+                                <span class="insight-value">$847K</span>
+                                <span class="insight-change positive">+12%</span>
+                            </div>
+                            <div class="insight-item">
+                                <span class="insight-label">Days on Market</span>
+                                <span class="insight-value">23</span>
+                                <span class="insight-change negative">-8%</span>
+                            </div>
+                            <div class="insight-item">
+                                <span class="insight-label">Inventory</span>
+                                <span class="insight-value">156</span>
+                                <span class="insight-change positive">+5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Properties Section -->
+        <section id="properties-section" class="content-section">
+            <div class="section-header">
+                <h2>Properties</h2>
+                <div class="section-controls">
+                    <div class="filter-controls">
+                        <select id="statusFilter">
+                            <option value="">All Status</option>
+                            <option value="for-sale">For Sale</option>
+                            <option value="under-contract">Under Contract</option>
+                            <option value="sold">Sold</option>
+                        </select>
+                        <select id="typeFilter">
+                            <option value="">All Types</option>
+                            <option value="villa">Villa</option>
+                            <option value="cottage">Cottage</option>
+                            <option value="house">House</option>
+                            <option value="condo">Condo</option>
+                        </select>
+                    </div>
+                    <button class="action-btn primary" data-action="add-property">
+                        <i class="fas fa-plus"></i>
+                        Add Property
+                    </button>
+                </div>
+            </div>
+            <div class="properties-grid" id="propertiesGrid">
+                <!-- Properties will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics-section" class="content-section">
+            <div class="section-header">
+                <h2>Analytics & Reports</h2>
+            </div>
+            <div class="analytics-dashboard">
+                <div class="analytics-grid">
+                    <div class="card">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Sales Performance
+                        </h3>
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">
+                            <i class="fas fa-pie-chart"></i>
+                            Property Types
+                        </h3>
+                        <canvas id="typeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clients Section -->
+        <section id="clients-section" class="content-section">
+            <div class="section-header">
+                <h2>Clients</h2>
+                <button class="action-btn primary" data-action="new-client">
+                    <i class="fas fa-user-plus"></i>
+                    Add Client
+                </button>
+            </div>
+            <div class="clients-grid" id="clientsGrid">
+                <!-- Clients will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Calendar Section -->
+        <section id="calendar-section" class="content-section">
+            <div class="section-header">
+                <h2>Calendar & Appointments</h2>
+                <button class="action-btn primary" data-action="schedule-showing">
+                    <i class="fas fa-calendar-plus"></i>
+                    Schedule Appointment
+                </button>
+            </div>
+            <div class="calendar-container">
+                <div class="appointments-list" id="appointmentsList">
+                    <!-- Appointments will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        <p>Loading your dashboard...</p>
+    </div>
+
+    <!-- Property Detail Modal -->
+    <div class="modal" id="propertyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Property Details</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Property details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="mockData.js"></script>
+    <script src="enhanced-script.js"></script>
+</body>
+</html>
