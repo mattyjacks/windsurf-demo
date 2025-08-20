@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astral X Everything - Encompassment Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="cosmic-background">
+        <div class="stars"></div>
+        <div class="nebula"></div>
+        <div class="cosmic-dust"></div>
+    </div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <div class="astral-logo">
+                <span class="logo-text">Astral</span>
+                <span class="logo-x">✕</span>
+                <span class="logo-text">Everything</span>
+            </div>
+            <p class="tagline">Explore the Infinite Interconnections of Reality</p>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- API Key Section -->
+        <section id="apiKeySection" class="api-section glass-morphism">
+            <div class="section-header">
+                <i class="fas fa-key"></i>
+                <h2>Connect to the Cosmos</h2>
+            </div>
+            <div class="api-input-container">
+                <input type="password" id="apiKeyInput" placeholder="Enter your OpenAI API Key" class="api-input">
+                <button id="saveApiKey" class="btn-primary">
+                    <span>Activate Connection</span>
+                    <i class="fas fa-bolt"></i>
+                </button>
+            </div>
+            <p class="api-status" id="apiStatus"></p>
+        </section>
+
+        <!-- Encompassment Explorer -->
+        <section id="explorerSection" class="explorer-section glass-morphism" style="display: none;">
+            <div class="explorer-header">
+                <h2 class="section-title">
+                    <span class="title-glow">Encompassment Explorer</span>
+                </h2>
+                <p class="explorer-description">
+                    Enter any combination of concepts, entities, or ideas to reveal their hidden connections
+                </p>
+            </div>
+
+            <div class="input-area">
+                <div class="prompt-container">
+                    <textarea id="userPrompt" class="prompt-input" placeholder="Example: quantum physics, music, consciousness&#10;or&#10;coffee, ancient Rome, artificial intelligence&#10;or&#10;Enter any combination of concepts..."></textarea>
+                    <div class="prompt-suggestions">
+                        <span class="suggestion-label">Try:</span>
+                        <button class="suggestion-btn" data-prompt="love, mathematics, black holes">Love × Math × Black Holes</button>
+                        <button class="suggestion-btn" data-prompt="DNA, music, fractals">DNA × Music × Fractals</button>
+                        <button class="suggestion-btn" data-prompt="dreams, quantum mechanics, art">Dreams × Quantum × Art</button>
+                    </div>
+                </div>
+                <button id="exploreBtn" class="btn-explore">
+                    <span class="btn-text">Explore Connections</span>
+                    <div class="btn-particles"></div>
+                </button>
+            </div>
+
+            <div id="loadingIndicator" class="loading-container" style="display: none;">
+                <div class="quantum-loader">
+                    <div class="loader-orbit"></div>
+                    <div class="loader-orbit"></div>
+                    <div class="loader-orbit"></div>
+                </div>
+                <p class="loading-text">Traversing dimensional boundaries...</p>
+            </div>
+
+            <div id="resultContainer" class="result-container" style="display: none;">
+                <div class="result-header">
+                    <h3 class="result-title">
+                        <i class="fas fa-infinity"></i>
+                        <span>Interconnection Analysis</span>
+                    </h3>
+                    <div class="result-actions">
+                        <button id="copyBtn" class="action-btn" title="Copy to Clipboard">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <button id="shareBtn" class="action-btn" title="Share">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <button id="downloadBtn" class="action-btn" title="Download">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="resultContent" class="result-content"></div>
+            </div>
+        </section>
+
+        <!-- Visual Elements -->
+        <div class="floating-elements">
+            <div class="floating-orb orb-1"></div>
+            <div class="floating-orb orb-2"></div>
+            <div class="floating-orb orb-3"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Astral × Everything | Exploring the Fabric of Reality</p>
+    </footer>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content glass-morphism">
+            <span class="close-modal">&times;</span>
+            <h3>Share Your Discovery</h3>
+            <div class="share-options">
+                <button class="share-option" id="shareTwitter">
+                    <i class="fab fa-twitter"></i> Twitter
+                </button>
+                <button class="share-option" id="shareLinkedIn">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </button>
+                <button class="share-option" id="shareEmail">
+                    <i class="fas fa-envelope"></i> Email
+                </button>
+            </div>
+            <div class="share-link-container">
+                <input type="text" id="shareLink" class="share-link" readonly>
+                <button id="copyLink" class="btn-copy">Copy Link</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
