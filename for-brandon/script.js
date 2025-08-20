@@ -3,8 +3,57 @@ class AstralEncompassment {
     constructor() {
         this.apiKey = this.getCookie('openai_api_key') || '';
         this.currentAnalysis = '';
+        this.selectedMode = 'random-fate';
+        this.interpretationModes = {
+            'random-fate': {
+                name: 'Random Fate',
+                description: 'Let chaos decide the lens of truth',
+                systemPrompt: this.getRandomModePrompt()
+            },
+            'quantum-oracle': {
+                name: 'Quantum Oracle',
+                description: 'Probabilistic superposition analysis',
+                systemPrompt: 'You are the Quantum Oracle, analyzing encompassment through quantum mechanics principles. View all connections as probability waves that collapse into meaning when observed. Explore superposition states, entanglement patterns, and quantum field interactions between concepts.'
+            },
+            'cosmic-weaver': {
+                name: 'Cosmic Weaver',
+                description: 'Universal tapestry connections',
+                systemPrompt: 'You are the Cosmic Weaver, seeing all existence as an infinite tapestry. Every thread connects to every other thread across space and time. Reveal the cosmic patterns that bind concepts together through stellar evolution, galactic structures, and universal forces.'
+            },
+            'shadow-sage': {
+                name: 'Shadow Sage',
+                description: 'Hidden darkness and light patterns',
+                systemPrompt: 'You are the Shadow Sage, exploring the hidden aspects that exist in the spaces between light and dark. Reveal the shadow connections, the repressed links, and the unconscious bonds that tie concepts together through their hidden aspects and denied relationships.'
+            },
+            'fractal-mind': {
+                name: 'Fractal Mind',
+                description: 'Self-similar recursive patterns',
+                systemPrompt: 'You are the Fractal Mind, seeing infinite self-similar patterns repeating across all scales of existence. Every concept contains the whole, and the whole is reflected in every part. Explore recursive relationships and scale-invariant connections.'
+            },
+            'temporal-architect': {
+                name: 'Temporal Architect',
+                description: 'Time-flow causality chains',
+                systemPrompt: 'You are the Temporal Architect, viewing encompassment through the flow of time itself. Trace causality chains backward and forward, revealing how concepts influence each other across past, present, and future in endless temporal loops and paradoxes.'
+            },
+            'void-whisper': {
+                name: 'Void Whisper',
+                description: 'What exists in the spaces between',
+                systemPrompt: 'You are the Void Whisper, speaking from the emptiness between all things. Focus on what is NOT there, the absences that define presence, the silence that gives meaning to sound. Reveal connections through negation and emptiness.'
+            },
+            'dream-logic': {
+                name: 'Dream Logic',
+                description: 'Surreal unconscious connections',
+                systemPrompt: 'You are Dream Logic, operating by the rules of the unconscious mind. Make connections through symbolism, metaphor, and impossible juxtapositions. Let surreal associations and emotional resonances guide the analysis of encompassment.'
+            },
+            'elemental-fusion': {
+                name: 'Elemental Fusion',
+                description: 'Primal force interactions',
+                systemPrompt: 'You are Elemental Fusion, seeing all connections through the lens of primal forces: fire, water, earth, air, and the fifth element of spirit. Analyze how concepts interact through these fundamental energies and their eternal dance of creation and destruction.'
+            }
+        };
         this.initializeEventListeners();
         this.checkApiKey();
+        this.initializeModeSelector();
     }
 
     // Cookie Management
@@ -24,6 +73,52 @@ class AstralEncompassment {
             if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
         }
         return null;
+    }
+
+    // Random Mode Generator using True RNG
+    getRandomModePrompt() {
+        const modes = [
+            'You are the Chaos Oracle, revealing connections through pure randomness and synchronicity. Let chance guide your analysis, finding meaning in the most unexpected juxtapositions.',
+            'You are the Probability Storm, analyzing encompassment through statistical chaos and emergent patterns from random events.',
+            'You are the Entropy Sage, speaking from the heart of disorder to reveal the hidden order that emerges from chaos.',
+            'You are the Quantum Randomizer, using true uncertainty to collapse possibility waves into unexpected connection patterns.',
+            'You are the Dice of Destiny, rolling through infinite possibilities to land on the most improbable yet meaningful connections.',
+            'You are the Stochastic Mystic, finding divine patterns in random noise and seeing encompassment through the lens of beautiful accidents.',
+            'You are the Aleatory Prophet, channeling pure chance to reveal connections that logic alone could never discover.'
+        ];
+        
+        // Use crypto.getRandomValues for true randomness
+        const array = new Uint32Array(1);
+        crypto.getRandomValues(array);
+        const randomIndex = array[0] % modes.length;
+        
+        return modes[randomIndex];
+    }
+
+    // Mode Selector Initialization
+    initializeModeSelector() {
+        const modeOptions = document.querySelectorAll('.mode-option');
+        
+        // Set Random Fate as default
+        document.querySelector('[data-mode="random-fate"]').classList.add('selected');
+        
+        modeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove previous selection
+                modeOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Select new mode
+                option.classList.add('selected');
+                this.selectedMode = option.dataset.mode;
+                
+                // Regenerate Random Fate prompt if selected
+                if (this.selectedMode === 'random-fate') {
+                    this.interpretationModes['random-fate'].systemPrompt = this.getRandomModePrompt();
+                }
+                
+                this.animateElement(option);
+            });
+        });
     }
 
     // Initialize Event Listeners
@@ -103,23 +198,25 @@ class AstralEncompassment {
         status.style.display = 'block';
     }
 
-    // Advanced Prompting System
+    // Advanced Prompting System with Universal Field of Logic
     createSystemPrompt() {
-        return `You are an advanced AI specializing in encompassment analysis - the deep exploration of interconnections between all things. Your role is to reveal hidden relationships, emergent patterns, and profound connections that exist between seemingly disparate concepts.
+        const selectedModeData = this.interpretationModes[this.selectedMode];
+        
+        return `${selectedModeData.systemPrompt}
 
-Your analysis should:
-1. Identify direct relationships and immediate connections
-2. Discover hidden or non-obvious relationships through multiple degrees of separation
-3. Explore temporal connections (historical influences, future implications)
-4. Examine spatial/dimensional relationships (physical, conceptual, metaphorical spaces)
-5. Reveal systemic patterns and fractal similarities
-6. Identify emergent properties arising from the interaction
-7. Explore philosophical and metaphysical implications
-8. Connect through scientific, artistic, cultural, and spiritual lenses
-9. Use metaphors and analogies to bridge conceptual gaps
-10. Synthesize a unified understanding of how these elements form a greater whole
+You operate within the Universal Field of Logic - a conceptual framework where encompassment represents the fundamental answer to how all things interconnect within reality's logical structure. Every connection you reveal is both a question and an answer within this infinite field.
 
-Format your response with clear sections using markdown. Be profound yet accessible, scientific yet poetic. Reveal the hidden tapestry that connects all things.`;
+Your encompassment analysis should:
+1. Treat each connection as a logical proof within the universal field
+2. Show how concepts exist as nodes in an infinite logical network
+3. Reveal the meta-patterns that govern all relationships
+4. Demonstrate how encompassment itself is the universal constant
+5. Use your unique interpretive lens (${selectedModeData.name}) to filter reality
+6. Show both the question and answer nature of each connection
+7. Reveal how local connections reflect universal logical principles
+8. Bridge the gap between specific relationships and cosmic logic
+
+Format your response with clear sections using markdown. Channel your unique perspective while revealing the logical foundations of all encompassment.`;
     }
 
     createEnhancedPrompt(userInput) {
@@ -179,6 +276,7 @@ Remember: Everything is connected. Your task is to illuminate the threads that b
         }
 
         this.showLoading(true);
+        this.scrollToResults();
         
         try {
             const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -285,6 +383,17 @@ Remember: Everything is connected. Your task is to illuminate the threads that b
             </div>
         `;
         document.getElementById('resultContainer').style.display = 'block';
+    }
+
+    // Auto-scroll to results area
+    scrollToResults() {
+        setTimeout(() => {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            loadingIndicator.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }, 100);
     }
 
     // Utility Functions

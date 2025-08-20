@@ -333,6 +333,8 @@ body {
     gap: 1rem;
     margin-top: 1rem;
     flex-wrap: wrap;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .suggestion-label {
@@ -355,6 +357,94 @@ body {
     background: rgba(0, 212, 255, 0.2);
     transform: scale(1.05);
     box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* Mode Selector */
+.mode-selector {
+    margin: 2rem 0;
+    padding: 1.5rem;
+}
+
+.mode-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    justify-content: center;
+}
+
+.mode-header i {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+}
+
+.mode-header h3 {
+    font-family: 'Orbitron', monospace;
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+}
+
+.mode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.mode-option {
+    background: rgba(0, 26, 51, 0.4);
+    border: 2px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mode-option:hover {
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+}
+
+.mode-option.selected {
+    border-color: var(--glow-cyan);
+    background: rgba(0, 212, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+.mode-option.selected::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    animation: shimmer 2s linear infinite;
+}
+
+.mode-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.mode-name {
+    font-family: 'Orbitron', monospace;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.mode-desc {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    color: var(--text-light);
+    line-height: 1.4;
 }
 
 /* Explore Button */
