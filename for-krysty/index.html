@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness with Wanjira - Your Compassionate AI Counselor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Comfortaa:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="floating-heart"></div>
+        <div class="floating-heart"></div>
+        <div class="floating-heart"></div>
+        <div class="floating-heart"></div>
+        <div class="floating-heart"></div>
+    </div>
+
+    <div class="container">
+        <header class="fade-in">
+            <h1 class="title">
+                <span class="heart-icon">💗</span>
+                Wellness with Wanjira
+                <span class="heart-icon">💗</span>
+            </h1>
+            <p class="subtitle">Your safe space for healing, hope, and growth</p>
+        </header>
+
+        <div class="api-section fade-in" id="apiSection">
+            <div class="api-input-container">
+                <label for="apiKey">
+                    <span class="label-icon">🔑</span>
+                    OpenAI API Key
+                </label>
+                <input 
+                    type="password" 
+                    id="apiKey" 
+                    placeholder="Enter your OpenAI API key..."
+                    class="api-input"
+                />
+                <button id="saveApiKey" class="btn-primary">
+                    <span>Connect to Wanjira</span>
+                </button>
+            </div>
+            <p class="api-note">Your API key is stored locally and never shared</p>
+        </div>
+
+        <div class="chat-section hidden" id="chatSection">
+            <div class="welcome-message slide-in">
+                <h2>Welcome, dear friend 🌸</h2>
+                <p>I'm Wanjira, your compassionate wellness companion. I'm here to listen, understand, and help you navigate life's challenges with hope and faith in better days ahead.</p>
+                <p>Share what's on your heart, and together we'll explore pathways to healing and stability.</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="messages-container" id="messagesContainer">
+                    <!-- Messages will appear here -->
+                </div>
+
+                <div class="suggested-prompts hidden" id="suggestedPrompts">
+                    <p class="prompts-title">Perhaps you'd like to explore:</p>
+                    <div class="prompts-list" id="promptsList">
+                        <!-- Suggested prompts will appear here -->
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <div class="input-container">
+                        <textarea 
+                            id="userInput" 
+                            placeholder="Share what's troubling you... I'm here to listen with compassion 💝"
+                            rows="3"
+                            class="user-input"
+                        ></textarea>
+                        <button id="sendMessage" class="btn-send">
+                            <span class="send-icon">💌</span>
+                            <span class="send-text">Send</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wellness-tips">
+                <h3>Remember:</h3>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <span class="tip-icon">🌟</span>
+                        <p>You are worthy of love and support</p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">🌱</span>
+                        <p>Growth happens one step at a time</p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">🤝</span>
+                        <p>It's okay to ask for help</p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">☀️</span>
+                        <p>Better days are coming</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="loading-spinner">
+                <div class="spinner-heart"></div>
+                <p>Wanjira is thinking...</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Built with love and care 💕 | Your journey to wellness starts here</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
