@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="progressBar"></div>
     <!-- Header Section -->
     <header>
         <div class="container">
@@ -24,6 +25,9 @@
                     <li><a href="#education">Education</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
                 <div class="hamburger">
                     <span></span>
                     <span></span>
@@ -63,7 +67,7 @@
             </div>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="assets/ME.png" alt="About Muhammad Mavia">
+                    <img src="https://images.pexels.com/photos/19746166/pexels-photo-19746166.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=800&h=800&fit=crop" alt="Professional South Asian male developer portrait" width="800" height="800">
                 </div>
                 <div class="about-text">
                     <h3>Who am I?</h3>
@@ -291,13 +295,13 @@
     <section id="projects" class="projects">
         <div class="container">
             <div class="section-header">
-                <h2>Featured Projects</h2>
+                <h2>Projects</h2>
                 <div class="underline"></div>
             </div>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="assets/project1.jpg" alt="E-commerce Website">
+                        <img src="https://images.pexels.com/photos/5632401/pexels-photo-5632401.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1200&h=800&fit=crop" alt="Modern e-commerce product grid" width="1200" height="800">
                     </div>
                     <div class="project-info">
                         <h3>Custom E-commerce Platform</h3>
@@ -311,7 +315,7 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="assets/project2.jpg" alt="Corporate Website">
+                        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1200&h=800&fit=crop" alt="Corporate workspace and website concept" width="1200" height="800">
                     </div>
                     <div class="project-info">
                         <h3>Corporate Website Redesign</h3>
@@ -325,7 +329,7 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="assets/project3.jpg" alt="Custom CMS">
+                        <img src="https://images.pexels.com/photos/6476589/pexels-photo-6476589.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1200&h=800&fit=crop" alt="Analytics dashboard UI representing CMS" width="1200" height="800">
                     </div>
                     <div class="project-info">
                         <h3>Custom CMS Development</h3>
@@ -339,7 +343,7 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="assets/project4.jpg" alt="RISC-V Project">
+                        <img src="https://images.pexels.com/photos/270463/pexels-photo-270463.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1200&h=800&fit=crop" alt="Semiconductor chip and circuits macro" width="1200" height="800">
                     </div>
                     <div class="project-info">
                         <h3>RISC-V SoC Component</h3>
@@ -415,6 +419,7 @@
         </div>
     </footer>
 
+    <button id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
     <script src="script.js"></script>
 </body>
 </html>
