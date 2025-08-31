@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blueberries — Nature's Little Blue Powerhouses</title>
+  <meta name="description" content="A beautifully animated, interactive guide to blueberries: benefits, nutrition facts, recipes, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <canvas id="berryCanvas" class="canvas-bg" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <a class="logo" href="#top" aria-label="Blueberries home">
+      <span class="logo-berry" aria-hidden="true">🫐</span> Blueberries
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="site-nav" class="site-nav">
+      <a href="#about">About</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#nutrition">Nutrition</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#sources">Sources</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1 class="reveal">Blueberries</h1>
+          <p class="tagline reveal">Nature's little blue powerhouses—delicious, antioxidant-rich, and good for your brain and heart.</p>
+          <div class="hero-ctas reveal">
+            <a class="btn primary" href="#benefits">See Benefits</a>
+            <a class="btn ghost" href="#recipes">Explore Recipes</a>
+          </div>
+        </div>
+        <div class="hero-berries tilt" aria-hidden="true">
+          <!-- Simple inline SVG berries -->
+          <svg class="berry berry-lg" viewBox="0 0 120 120">
+            <defs>
+              <radialGradient id="g1" cx="40%" cy="35%" r="60%">
+                <stop offset="0%" stop-color="#9cc3ff" />
+                <stop offset="60%" stop-color="#3a5aa9" />
+                <stop offset="100%" stop-color="#1c2f6b" />
+              </radialGradient>
+            </defs>
+            <circle cx="60" cy="60" r="52" fill="url(#g1)" />
+            <circle cx="48" cy="46" r="10" fill="#ffffff40" />
+            <path d="M58 22c6 1 10 4 12 9-6 1-12 1-18 0 2-5 6-8 12-9z" fill="#2f5f2f" opacity="0.9" />
+          </svg>
+          <svg class="berry berry-md" viewBox="0 0 120 120">
+            <defs>
+              <radialGradient id="g2" cx="45%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#b9d2ff" />
+                <stop offset="60%" stop-color="#4a69b8" />
+                <stop offset="100%" stop-color="#203675" />
+              </radialGradient>
+            </defs>
+            <circle cx="60" cy="60" r="42" fill="url(#g2)" />
+            <circle cx="50" cy="48" r="8" fill="#ffffff40" />
+            <path d="M58 26c5 1 8 3 10 7-5 1-10 1-15 0 2-4 5-6 10-7z" fill="#2f5f2f" opacity="0.9" />
+          </svg>
+          <svg class="berry berry-sm" viewBox="0 0 120 120">
+            <defs>
+              <radialGradient id="g3" cx="45%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#c7dbff" />
+                <stop offset="60%" stop-color="#5776c6" />
+                <stop offset="100%" stop-color="#284088" />
+              </radialGradient>
+            </defs>
+            <circle cx="60" cy="60" r="32" fill="url(#g3)" />
+            <circle cx="50" cy="50" r="6" fill="#ffffff40" />
+            <path d="M58 30c4 1 7 3 8 6-4 1-8 1-12 0 2-3 4-5 8-6z" fill="#2f5f2f" opacity="0.9" />
+          </svg>
+        </div>
+      </div>
+      <div class="scroll-indicator" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="mouse"></div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="grid two">
+          <div>
+            <h2 class="reveal">What makes blueberries special?</h2>
+            <p class="reveal">Blueberries are sweet, juicy berries native to North America. They’re rich in anthocyanins—the pigments that give them their deep blue color—along with fiber, vitamin C, vitamin K, and manganese.</p>
+            <p class="reveal">Their antioxidant profile helps fight oxidative stress and inflammation. They’re linked with heart and brain health and make a simple, tasty snack fresh or frozen.</p>
+            <ul class="key-points reveal">
+              <li>High in antioxidants, especially anthocyanins</li>
+              <li>Low in calories, high in fiber</li>
+              <li>Delicious in smoothies, oatmeal, salads, or by the handful</li>
+            </ul>
+            <a class="btn primary reveal" href="#nutrition">See nutrition</a>
+          </div>
+          <figure class="about-art tilt reveal" aria-hidden="true">
+            <svg viewBox="0 0 220 220">
+              <defs>
+                <radialGradient id="ga" cx="45%" cy="40%" r="60%">
+                  <stop offset="0%" stop-color="#c7dbff" />
+                  <stop offset="60%" stop-color="#5675c5" />
+                  <stop offset="100%" stop-color="#263f86" />
+                </radialGradient>
+              </defs>
+              <circle cx="70" cy="100" r="55" fill="url(#ga)" />
+              <circle cx="130" cy="85" r="40" fill="url(#ga)" />
+              <circle cx="140" cy="140" r="48" fill="url(#ga)" />
+              <circle cx="60" cy="80" r="10" fill="#ffffff40" />
+              <circle cx="125" cy="70" r="8" fill="#ffffff35" />
+            </svg>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits" class="section alt">
+      <div class="container">
+        <h2 class="center reveal">Benefits</h2>
+        <div class="grid three cards">
+          <article class="card reveal">
+            <h3>Brain support</h3>
+            <p>Compounds in blueberries may support memory and cognitive function.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Heart health</h3>
+            <p>Antioxidants and fiber can contribute to healthy blood pressure and cholesterol.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Gut friendly</h3>
+            <p>Blueberries provide prebiotic fiber that feeds beneficial gut bacteria.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Low calories</h3>
+            <p>About 84 calories per cup with satisfying volume and sweetness.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Vitamin rich</h3>
+            <p>Good source of vitamin C and K, plus manganese.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Antioxidant power</h3>
+            <p>Anthocyanins help combat oxidative stress.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="nutrition" class="section">
+      <div class="container">
+        <h2 class="center reveal">Nutrition snapshot (1 cup / 148g)</h2>
+        <div class="grid two">
+          <div class="nutri-stats reveal">
+            <div class="ring" data-label="Vitamin C" data-value="16">16%</div>
+            <div class="ring" data-label="Vitamin K" data-value="24">24%</div>
+            <div class="ring" data-label="Manganese" data-value="22">22%</div>
+          </div>
+          <div class="nutri-bars reveal">
+            <div class="bar" data-label="Calories" data-max="120" data-value="84"></div>
+            <div class="bar" data-label="Fiber (g)" data-max="10" data-value="3.6"></div>
+            <div class="bar" data-label="Carbs (g)" data-max="30" data-value="21"></div>
+            <div class="bar" data-label="Sugar (g)" data-max="20" data-value="15"></div>
+          </div>
+        </div>
+        <p class="disclaimer reveal">Percent Daily Values are rough estimates based on adult needs. Always consult official sources for dietary decisions.</p>
+      </div>
+    </section>
+
+    <section id="recipes" class="section alt">
+      <div class="container">
+        <h2 class="center reveal">Easy recipe ideas</h2>
+        <div class="grid three cards">
+          <article class="card recipe tilt reveal">
+            <div class="cover" role="img" aria-label="Blueberry smoothie" style="--bg:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop')"></div>
+            <h3>Blueberry smoothie</h3>
+            <p>Blend blueberries, banana, yogurt, a splash of milk, and ice. Optional: spinach and chia.</p>
+          </article>
+          <article class="card recipe tilt reveal">
+            <div class="cover" role="img" aria-label="Blueberry oatmeal" style="--bg:url('https://images.unsplash.com/photo-1551189014-8f6dfc7b3053?q=80&w=1200&auto=format&fit=crop')"></div>
+            <h3>Blueberry oatmeal</h3>
+            <p>Top warm oats with blueberries, almond butter, cinnamon, and a drizzle of honey.</p>
+          </article>
+          <article class="card recipe tilt reveal">
+            <div class="cover" role="img" aria-label="Blueberry salad" style="--bg:url('https://images.unsplash.com/photo-1552693673-1bf958298935?q=80&w=1200&auto=format&fit=crop')"></div>
+            <h3>Summer salad</h3>
+            <p>Spinach, blueberries, goat cheese, toasted almonds, and balsamic vinaigrette.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section">
+      <div class="container">
+        <h2 class="center reveal">Gallery</h2>
+        <div class="masonry reveal">
+          <img src="https://images.unsplash.com/photo-1502741126161-b048400d0854?q=80&w=1200&auto=format&fit=crop" alt="Fresh blueberries closeup" />
+          <img src="https://images.unsplash.com/photo-1619167579653-6d292743ffb3?q=80&w=1200&auto=format&fit=crop" alt="Blueberries in a bowl" />
+          <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?q=80&w=1200&auto=format&fit=crop" alt="Blueberries on a plant" />
+          <img src="https://images.unsplash.com/photo-1528821154947-1aa3d1bb7548?q=80&w=1200&auto=format&fit=crop" alt="Blueberries scattered on table" />
+          <img src="https://images.unsplash.com/photo-1505575972945-280c5a84af2b?q=80&w=1200&auto=format&fit=crop" alt="Blueberry smoothie with berries" />
+          <img src="https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?q=80&w=1200&auto=format&fit=crop" alt="Blueberries in a basket" />
+        </div>
+      </div>
+    </section>
+
+    <section id="sources" class="section alt">
+      <div class="container">
+        <h2 class="center reveal">Sources</h2>
+        <ul class="sources reveal">
+          <li>USDA FoodData Central</li>
+          <li>National Institutes of Health — Office of Dietary Supplements</li>
+          <li>Peer-reviewed research on anthocyanins and cognition</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Made with love for blueberries. Built to be interactive, accessible, and blue.</p>
+  </footer>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>
