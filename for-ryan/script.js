@@ -153,6 +153,27 @@ const EXTRA_SPOTS = [
   { id:'fox-forest', name:'Fox State Forest', location:'Hillsborough, NH', lat:43.1126, lon:-71.8974 },
   { id:'greenfield-sp', name:'Greenfield State Park', location:'Greenfield, NH', lat:42.9909, lon:-71.8739 },
   { id:'ahern-laconia', name:'WOW Trail Connector (Laconia)', location:'Laconia, NH', lat:43.6458, lon:-71.4687 },
+  // +20 additional
+  { id:'green-woodlands', name:'Green Woodlands', location:'Dorchester/Wentworth, NH', lat:43.8215, lon:-71.9289 },
+  { id:'trescott', name:'Trescott Lands', location:'Hanover, NH', lat:43.7019, lon:-72.2702 },
+  { id:'pudding-pond', name:'Pudding Pond / Redstone', location:'North Conway, NH', lat:44.0465, lon:-71.1009 },
+  { id:'new-boston', name:'New Boston Conservation Lands', location:'New Boston, NH', lat:42.9763, lon:-71.6904 },
+  { id:'monson-center', name:'Monson Center', location:'Milford, NH', lat:42.8399, lon:-71.5927 },
+  { id:'swope-park', name:'Swope Park', location:'Concord, NH', lat:43.1998, lon:-71.5792 },
+  { id:'joe-english', name:'Joe English Reservation', location:'Amherst, NH', lat:42.8869, lon:-71.6307 },
+  { id:'crotched', name:'Crotched Mountain Trails', location:'Greenfield/Francestown, NH', lat:42.9989, lon:-71.8725 },
+  { id:'loon-bike-park', name:'Loon Mountain Bike Park', location:'Lincoln, NH', lat:44.0366, lon:-71.6216 },
+  { id:'waterville', name:'Waterville Valley Trails', location:'Waterville Valley, NH', lat:43.9501, lon:-71.5078 },
+  { id:'moody-park', name:'Moody Park', location:'Claremont, NH', lat:43.3827, lon:-72.3416 },
+  { id:'arrowhead', name:'Arrowhead Recreation Area', location:'Claremont, NH', lat:43.3657, lon:-72.3621 },
+  { id:'mine-hill', name:'Mine Hill', location:'Roxbury, NH', lat:42.9532, lon:-72.2166 },
+  { id:'northwood-meadows', name:'Northwood Meadows State Park', location:'Northwood, NH', lat:43.2064, lon:-71.1893 },
+  { id:'mast-yard', name:'Mast Yard State Forest', location:'Concord, NH', lat:43.2302, lon:-71.5804 },
+  { id:'elm-brook', name:'Elm Brook Recreation Area', location:'Hopkinton, NH', lat:43.2407, lon:-71.6981 },
+  { id:'heads-pond', name:'Heads Pond Town Forest', location:'Hooksett, NH', lat:43.1116, lon:-71.4191 },
+  { id:'nottingham-forest', name:'Nottingham Town Forest', location:'Nottingham, NH', lat:43.1218, lon:-71.0966 },
+  { id:'kingston-forest', name:'Kingston Town Forest', location:'Kingston, NH', lat:42.9120, lon:-71.0780 },
+  { id:'fox-park-plymouth', name:'Fox Park Trails', location:'Plymouth, NH', lat:43.7632, lon:-71.6879 },
 ];
 
 const PLACEHOLDER_GRADIENTS = [
@@ -164,6 +185,7 @@ const PLACEHOLDER_GRADIENTS = [
 function createSpotCard(spot, idx) {
   const card = document.createElement('article');
   card.className = 'card reveal';
+  card.dataset.id = spot.id;
 
   const imgWrap = document.createElement('div');
   imgWrap.className = 'card__img';
@@ -301,6 +323,22 @@ async function hydrateImage(card, imgEl) {
   }
 }
 
+// --- Region helpers ---
+function inferRegion(lat, lon) {
+  // Very rough regionalization by lat/lon for NH
+  if (lat < 43.0) return 'Southern';
+  if (lon > -70.9 && lat <= 43.6) return 'Seacoast';
+  if (lat >= 43.0 && lat < 43.6 && lon <= -70.9 && lon > -71.5) return 'Merrimack Valley';
+  if (lat >= 43.4 && lat < 44.1 && lon <= -71.0) return 'Lakes';
+  if (lat >= 43.7 && lat < 44.5 && lon > -71.9 && lon <= -71.0) return 'White Mountains';
+  if (lat >= 43.7 && lon <= -71.9) return 'Upper Valley';
+  if (lat < 43.2 && lon <= -71.5) return 'Monadnock';
+  if (lat >= 44.5) return 'North Country';
+  return 'Statewide';
+}
+
+const DIFFICULTY_TAGS = ['beginner', 'intermediate', 'technical', 'flow', 'scenic', 'family'];
+
 // Map
 function initMap() {
   const mapEl = document.getElementById('map');
@@ -312,16 +350,113 @@ function initMap() {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  const all = [...SPOTS, ...EXTRA_SPOTS];
-  const group = L.featureGroup();
-  all.forEach(p => {
-    if (typeof p.lat === 'number' && typeof p.lon === 'number') {
-      const m = L.marker([p.lat, p.lon]).bindPopup(`<strong>${p.name}</strong><br/><span style="color:#6fd8ae">${p.location || ''}</span>`);
-      m.addTo(group);
-    }
+  const all = [...SPOTS, ...EXTRA_SPOTS].map(p => ({
+    ...p,
+    tags: Array.isArray(p.tags) && p.tags.length ? p.tags : ['intermediate'],
+    region: inferRegion(p.lat, p.lon)
+  }));
+
+  // Build region-based clustered base layers
+  const regions = Array.from(new Set(all.map(p => p.region))).sort();
+  const regionClusters = {};
+  const allCluster = L.markerClusterGroup();
+  const markersById = new Map();
+
+  regions.forEach(r => {
+    regionClusters[r] = L.markerClusterGroup();
   });
-  group.addTo(map);
-  try { map.fitBounds(group.getBounds().pad(0.08)); } catch (_) {}
+
+  function makeMarker(point) {
+    const marker = L.marker([point.lat, point.lon]);
+    marker.bindPopup(`<strong>${point.name}</strong><br/><span style="color:#6fd8ae">${point.location || ''}</span>`);
+    marker.on('click', () => {
+      const card = document.querySelector(`.card[data-id="${point.id}"]`);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('card--highlight');
+        setTimeout(() => card.classList.remove('card--highlight'), 1800);
+      }
+    });
+    return marker;
+  }
+
+  // Difficulty filter state
+  const difficultyState = new Set(DIFFICULTY_TAGS);
+
+  function matchesDifficulty(point) {
+    // Show if any of the point's tags are enabled
+    return point.tags.some(t => difficultyState.has(t));
+  }
+
+  function populateRegions() {
+    Object.values(regionClusters).forEach(g => g.clearLayers());
+    allCluster.clearLayers();
+    markersById.clear();
+    all.forEach(p => {
+      if (!matchesDifficulty(p)) return;
+      const m = makeMarker(p);
+      regionClusters[p.region].addLayer(m);
+      allCluster.addLayer(m);
+      markersById.set(p.id, m);
+    });
+  }
+
+  populateRegions();
+
+  const baseLayers = { 'All': allCluster };
+  regions.forEach(r => { baseLayers[r] = regionClusters[r]; });
+  // Default to All
+  let activeRegion = 'All';
+  allCluster.addTo(map);
+
+  const layerControl = L.control.layers(baseLayers, {}, { collapsed: false }).addTo(map);
+  map.on('baselayerchange', e => {
+    activeRegion = e.name;
+  });
+
+  // Custom difficulty filter control
+  const DiffControl = L.Control.extend({
+    onAdd() {
+      const div = L.DomUtil.create('div', 'leaflet-bar');
+      div.style.background = '#0b1210cc';
+      div.style.padding = '8px 10px';
+      div.style.color = '#e9f5ee';
+      div.style.border = '1px solid #163c2e';
+      div.style.borderRadius = '8px';
+      div.innerHTML = `<strong style="font-size:12px;display:block;margin-bottom:6px;">Difficulty</strong>` +
+        DIFFICULTY_TAGS.map(t => `
+          <label style="display:flex;gap:6px;align-items:center;font-size:12px;margin:3px 0;">
+            <input type="checkbox" data-tag="${t}" checked style="accent-color:#33d17a"/> ${t}
+          </label>`).join('');
+      // Prevent map drag when interacting
+      L.DomEvent.disableClickPropagation(div);
+      // Bind events
+      div.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', () => {
+          const tag = cb.getAttribute('data-tag');
+          if (cb.checked) difficultyState.add(tag); else difficultyState.delete(tag);
+          populateRegions();
+          // Re-attach the active region to refresh layers
+          Object.entries(regionClusters).forEach(([name, grp]) => {
+            if (name === activeRegion) { grp.addTo(map); }
+            else { map.removeLayer(grp); }
+          });
+          try {
+    const target = activeRegion === 'All' ? allCluster : regionClusters[activeRegion];
+    map.fitBounds(target.getBounds().pad(0.08));
+  } catch (_) {}
+        });
+      });
+      return div;
+    },
+    onRemove() {}
+  });
+  map.addControl(new DiffControl({ position: 'topright' }));
+
+  try {
+    const target = activeRegion === 'All' ? allCluster : regionClusters[activeRegion];
+    map.fitBounds(target.getBounds().pad(0.08));
+  } catch (_) {}
 }
 
 // Init
