@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ride Southern NH — Mountain Biking Guide</title>
+  <meta name="description" content="A beautifully animated guide to the best mountain biking spots in Southern New Hampshire with trail highlights, difficulty tags, and ratings." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+  <!-- Optional: Provide your Pexels API key here to auto-load MTB photos from Pexels -->
+  <!-- NEVER commit real API keys. This is for local/dev only. -->
+  <meta name="pexels-api-key" content="" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content container">
+      <h1 class="hero__title">Ride Southern New Hampshire</h1>
+      <p class="hero__subtitle">Hand-picked mountain biking spots with highlights, difficulty tags, and our curated ratings. Photos via Pexels.</p>
+      <div class="hero__cta">
+        <a href="#spots" class="btn btn--primary">Browse Top Spots</a>
+        <a href="#sources" class="btn btn--ghost">See Sources</a>
+      </div>
+    </div>
+    <div class="hero__scroll-indicator">Scroll</div>
+  </header>
+
+  <main>
+    <section id="about" class="section container">
+      <div class="section__header reveal">
+        <h2>About this guide</h2>
+        <p>Focused on Southern and Seacoast New Hampshire trail networks. Ratings reflect terrain variety, mileage, flow/tech, and accessibility. Always check local conditions and postings.</p>
+      </div>
+      <ul class="chips reveal" id="filters" aria-label="Filter by tag">
+        <li><button class="chip is-active" data-filter="all">All</button></li>
+        <li><button class="chip" data-filter="beginner">Beginner</button></li>
+        <li><button class="chip" data-filter="intermediate">Intermediate</button></li>
+        <li><button class="chip" data-filter="technical">Technical</button></li>
+        <li><button class="chip" data-filter="family">Family-friendly</button></li>
+        <li><button class="chip" data-filter="scenic">Scenic</button></li>
+        <li><button class="chip" data-filter="flow">Flow</button></li>
+        <li><button class="chip" data-filter="lakes">Lakes</button></li>
+      </ul>
+      <div class="toolbar reveal">
+        <label class="switch">
+          <input type="checkbox" id="sortByRating" />
+          <span>Sort by rating</span>
+        </label>
+      </div>
+    </section>
+
+    <section id="spots" class="section container">
+      <div id="spotsGrid" class="grid"></div>
+    </section>
+
+    <section id="tips" class="section container">
+      <div class="section__header reveal">
+        <h2>Trail etiquette & safety</h2>
+      </div>
+      <ul class="tips reveal">
+        <li><strong>Yield & respect:</strong> Yield to hikers and equestrians. Slow down around families and dogs. Respect closures and wet/muddy trail advisories.</li>
+        <li><strong>Preparedness:</strong> Bring water, a basic repair kit, and a charged phone. In hunting seasons, wear blaze orange (e.g., Musquash).</li>
+        <li><strong>Leave no trace:</strong> Pack out trash and avoid skidding to preserve singletrack.</li>
+      </ul>
+    </section>
+
+    <section id="sources" class="section container">
+      <div class="section__header reveal">
+        <h2>Sources</h2>
+        <p>We compiled facts and descriptions from the following official pages and community trail resources:</p>
+      </div>
+      <ul class="sources reveal">
+        <li><a href="https://www.nhstateparks.org/find-parks-trails/bear-brook-state-park" target="_blank" rel="noopener">NH State Parks — Bear Brook State Park</a></li>
+        <li><a href="https://www.nhstateparks.org/find-parks-trails/pawtuckaway-state-park" target="_blank" rel="noopener">NH State Parks — Pawtuckaway State Park</a></li>
+        <li><a href="https://www.trailfinder.info/trails/trail/henderson-swasey-town-forest-trail-network" target="_blank" rel="noopener">Trail Finder — Henderson-Swasey (Fort Rock)</a></li>
+        <li><a href="https://www.singletracks.com/bike-trails/stratham-hill-park/" target="_blank" rel="noopener">Singletracks — Stratham Hill Park</a></li>
+        <li><a href="https://www.nashuanh.gov/491/Mine-Falls-Park" target="_blank" rel="noopener">City of Nashua — Mine Falls Park</a></li>
+        <li><a href="https://londonderrytrails.org/musquash-conservation-area/" target="_blank" rel="noopener">Londonderry Trailways — Musquash Conservation Area</a></li>
+        <li><a href="https://www.singletracks.com/bike-trails/depot-road-singletracks-fomba/" target="_blank" rel="noopener">Singletracks — FOMBA (Depot Road Singletracks)</a></li>
+        <li><a href="http://www.merrimackoutdoors.org/our-properties/grater-woods" target="_blank" rel="noopener">Merrimack Outdoors — Grater Woods</a></li>
+        <li><a href="https://www.singletracks.com/bike-trails/kingman-farm/" target="_blank" rel="noopener">Singletracks — Kingman Farm</a></li>
+      </ul>
+      <p class="credits reveal">Images provided by <a href="https://www.pexels.com/" target="_blank" rel="noopener">Pexels</a>. Add your free Pexels API key in the page &lsquo;meta&rsquo; tag to auto-populate MTB photos.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__content">
+      <p>Ride Southern NH — Built with ❤️ for mountain bikers. Always ride within your limits.</p>
+    </div>
+  </footer>
+
+  <script src="./pexels-key.js" defer></script>
+  <script src="./script.js" defer></script>
+</body>
+</html>
