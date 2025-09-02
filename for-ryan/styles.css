@@ -140,3 +140,8 @@ body {
 /* Simple reveal for section headers */
 .reveal { opacity: 0; transform: translateY(12px); transition: .7s ease; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Map */
+.map-wrap { width: min(1200px, 96vw); margin: 10px auto 0; padding: 0 2vw; }
+#map { height: 480px; width: 100%; border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+@media (max-width: 700px) { #map { height: 380px; } }
