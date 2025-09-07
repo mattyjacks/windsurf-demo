@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shadow Broker — Process Payments in the Shadows</title>
+  <meta name="description" content="Shadow Broker: a fictional, neon-noir payment processor that lets your business process payments with shadows."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="fx-layer" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-wrap">
+      <div class="brand">
+        <span class="logo">SB</span>
+        <span class="name">Shadow Broker</span>
+      </div>
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#demo">Demo</a>
+        <a href="#ledger">Ledger</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-copy">
+        <h1>Process Payments with Shadows</h1>
+        <p>
+          Harness the latent economy of darkness. With Shadow Broker, your business can
+          settle accounts using ambient umbra—instant, silent, and delightfully elusive.
+        </p>
+        <div class="badges">
+          <span class="badge">🍑 Peachy Payouts</span>
+          <span class="badge">🍒 Chained Charms</span>
+          <span class="badge">🍓 Noir-Grade Security</span>
+          <span class="badge">🥝 Kiwi-Quick</span>
+          <span class="badge">🍉 Waterlight Speed</span>
+          <span class="badge">🍈 Honeydew Hashing</span>
+        </div>
+        <a class="cta" href="#demo">Try the Demo</a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="glow-ring"></div>
+      </div>
+    </section>
+
+    <section id="features" class="features container">
+      <h2>Why Shadow Broker?</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Umbra Liquidity</h3>
+          <p>Convert ambient shadows into transactional energy. The darker the room, the faster the settlement.</p>
+        </article>
+        <article class="card">
+          <h3>Noir Compliance</h3>
+          <p>Our spectral auditors verify every transaction with quantum chiaroscuro signatures.</p>
+        </article>
+        <article class="card">
+          <h3>Ghost Fees</h3>
+          <p>Fees vanish at dawn. Seriously. Check your ledger after sunrise.</p>
+        </article>
+        <article class="card">
+          <h3>Light-Resistant</h3>
+          <p>Patented anti-photon shielding ensures your payments won’t evaporate under scrutiny.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="demo" class="demo container">
+      <div class="demo-header">
+        <h2>Live Demo: Cast a Payment</h2>
+        <p>Simulate a payment processed in the shadows. This is a playful, client-side prototype.</p>
+      </div>
+
+      <div class="demo-wrap">
+        <form id="shadow-form" class="form card" autocomplete="off">
+          <div class="row">
+            <label for="merchant">Merchant</label>
+            <input id="merchant" name="merchant" type="text" placeholder="e.g., Umbra Coffee Co." required />
+          </div>
+          <div class="row two">
+            <div>
+              <label for="amount">Amount (USD)</label>
+              <input id="amount" name="amount" type="number" min="1" step="0.01" placeholder="42.00" required />
+            </div>
+            <div>
+              <label for="shadow">Shadow Type</label>
+              <select id="shadow" name="shadow">
+                <option>Penumbra</option>
+                <option>Umbra</option>
+                <option>Antumbra</option>
+                <option>Liminal</option>
+              </select>
+            </div>
+          </div>
+          <div class="row two">
+            <div>
+              <label for="customer">Customer</label>
+              <input id="customer" name="customer" type="text" placeholder="Alex Night" required />
+            </div>
+            <div>
+              <label for="intensity">Shadow Intensity</label>
+              <input id="intensity" name="intensity" type="range" min="1" max="10" value="6" />
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="note">Note (optional)</label>
+            <input id="note" name="note" type="text" placeholder="Order #SB-2025-009" />
+          </div>
+
+          <div class="actions">
+            <button id="pay" class="cta" type="submit">
+              Process in Shadows
+            </button>
+            <div id="status" class="status" role="status" aria-live="polite"></div>
+          </div>
+        </form>
+
+        <aside class="receipt card" aria-live="polite">
+          <h3>Receipt</h3>
+          <div id="receipt-body" class="receipt-body">
+            <p>No transaction yet. Cast a payment to see a spectral receipt.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="ledger" class="ledger container">
+      <h2>Ledger</h2>
+      <p class="muted">Local, client-side ledger stored with <code>localStorage</code>. Clear anytime.</p>
+      <div class="ledger-actions">
+        <button id="clear-ledger" class="ghost">Clear Ledger</button>
+      </div>
+      <div id="ledger-list" class="ledger-list"></div>
+    </section>
+
+    <section id="about" class="about container">
+      <h2>About Shadow Broker</h2>
+      <p>
+        Shadow Broker is a fictional platform dreamt up for creative demos. No real money is moved here—only vibes and
+        very committed photons.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-wrap">
+      <p>© <span id="year"></span> Shadow Broker. We operate strictly between dusk and dawn.</p>
+      <a class="ghost" href="#demo">Cast another payment →</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
