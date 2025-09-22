@@ -1,0 +1,174 @@
+/* Julia's Burger House — styles */
+:root{
+  --bg: #0b0d12;
+  --surface: rgba(255,255,255,0.06);
+  --surface-strong: rgba(255,255,255,0.12);
+  --text: #e8ecf1;
+  --muted: #9aa6b2;
+  --primary: #ff5a3c;
+  --primary-2: #ff8a60;
+  --accent: #ffd166;
+  --ok: #2ecc71;
+  --shadow: 0 10px 30px rgba(0,0,0,0.45);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --glass: backdrop-filter: saturate(180%) blur(14px);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background: radial-gradient(1200px 600px at 70% -10%, rgba(255,90,60,0.25), transparent 60%),
+              radial-gradient(1000px 500px at -10% 10%, rgba(255,209,102,0.2), transparent 60%),
+              linear-gradient(180deg, #0b0d12 0%, #0a0c10 100%);
+}
+img{max-width:100%; display:block}
+.container{width:min(1100px, 92%); margin:0 auto}
+
+/* Header */
+.site-header{
+  position:sticky; top:0; z-index:50; 
+  background: linear-gradient(180deg, rgba(11,13,18,0.85), rgba(11,13,18,0.4));
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.header-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+.logo{font-weight:800; letter-spacing:0.3px; text-decoration:none; color:var(--text); font-size:1.15rem}
+.nav{display:flex; gap:22px}
+.nav a{color:var(--muted); text-decoration:none}
+.nav a:hover{color:var(--text)}
+.mobile-toggle{display:none; background:transparent; border:0; color:var(--text); font-size:1.3rem}
+
+@media (max-width: 760px){
+  .nav{display:none}
+  .mobile-toggle{display:block}
+}
+
+/* Buttons */
+.btn{appearance:none; border:0; padding:12px 16px; border-radius:12px; font-weight:600; cursor:pointer}
+.btn-primary{background: linear-gradient(135deg, var(--primary), var(--primary-2)); color:#fff; box-shadow: var(--shadow)}
+.btn-primary:hover{filter:brightness(1.05)}
+.btn-ghost{background: rgba(255,255,255,0.06); color:#fff; border:1px solid rgba(255,255,255,0.1)}
+
+/* Hero */
+.hero{position:relative; padding:88px 0 40px}
+.hero-inner{display:grid; grid-template-columns: 1.1fr 1fr; gap:36px; align-items:center}
+.hero h1{font-size: clamp(2.2rem, 2.4rem + 2vw, 4rem); margin:0 0 10px}
+.hero p{color:var(--muted); font-size:1.05rem}
+.actions{display:flex; gap:12px; margin-top:16px}
+.hero-stats{display:flex; gap:22px; margin-top:24px; color:var(--muted)}
+.hero-stats strong{display:block; font-size:1.25rem; color:var(--text)}
+.hero-art .stacked-photos{display:grid; gap:14px; transform: rotate(-2deg)}
+.hero-art img{border-radius: var(--radius); box-shadow: var(--shadow)}
+.hero-gradient{position:absolute; inset:0; background: radial-gradient(600px 400px at 80% 0%, rgba(255,90,60,0.15), transparent 60%)}
+
+@media (max-width: 960px){
+  .hero-inner{grid-template-columns:1fr}
+}
+
+/* Sections */
+.section{padding:70px 0}
+.section-head{margin-bottom:18px}
+.section h2{font-size: clamp(1.6rem, 1.3rem + 1.5vw, 2.4rem); margin:0 0 6px}
+.section p{color:var(--muted); margin:0}
+
+/* Cards */
+.card-row{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
+.card{background: var(--surface); border:1px solid rgba(255,255,255,0.08); border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow)}
+.card img{width:100%; height:220px; object-fit:cover}
+.card-body{padding:16px}
+.card h3{margin:0 0 6px}
+.card p{margin:0 0 12px; color:var(--muted)}
+.card-meta{display:flex; align-items:center; justify-content:space-between}
+.price{font-weight:800; background:linear-gradient(135deg, var(--accent), #fff); -webkit-background-clip:text; color:transparent}
+/* lint fix: also include standard property */
+.price{background-clip: text}
+
+@media (max-width: 960px){
+  .card-row{grid-template-columns:1fr}
+}
+
+/* Filter chips */
+.filter-chips{display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 22px}
+.chip{padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color:var(--text); cursor:pointer}
+.chip.active{background: linear-gradient(135deg, rgba(255,90,60,0.25), rgba(255,138,96,0.2)); border-color: rgba(255,90,60,0.45)}
+
+/* Grid */
+.grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
+.item{transition: transform .25s ease, opacity .25s ease}
+.item.hide{opacity:0; transform:scale(.96); pointer-events:none}
+
+@media (max-width: 960px){
+  .grid{grid-template-columns:1fr}
+}
+
+/* Testimonials Carousel */
+.carousel{position:relative; background: var(--surface); border:1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding:18px}
+.slides{position:relative; overflow:hidden; min-height:130px}
+.slide{position:absolute; inset:0; opacity:0; transition: opacity .4s ease}
+.slide.current{opacity:1; position:relative}
+blockquote{margin:0; font-size:1.1rem}
+figcaption{color:var(--muted); margin-top:8px}
+.controls{position:absolute; inset-block:0; inset-inline:0; display:flex; align-items:center; justify-content:space-between; pointer-events:none}
+.controls button{pointer-events:auto; background: var(--surface-strong); border:1px solid rgba(255,255,255,0.12); color:#fff; width:36px; height:36px; border-radius:999px}
+.dots{display:flex; gap:8px; align-items:center; justify-content:center; margin-top:12px}
+.dots button{width:8px; height:8px; border-radius:999px; background: rgba(255,255,255,0.25); border:0}
+.dots button.active{background: #fff}
+
+/* Mini cards */
+.mini-card{background: var(--surface); border:1px solid rgba(255,255,255,0.08); padding:16px; border-radius: var(--radius-sm)}
+
+/* CTA */
+.cta{position:relative}
+.cta .container{background: linear-gradient(135deg, rgba(255,90,60,0.14), rgba(255,138,96,0.14)); border:1px dashed rgba(255,255,255,0.2); border-radius: var(--radius); padding:22px}
+.cta-form{display:flex; gap:10px; margin-top:10px}
+.cta-form input{flex:1; background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); color:#fff; padding:12px 14px; border-radius: 12px; outline:none}
+.form-note{color:var(--ok); min-height:1.25em}
+
+/* Footer */
+.site-footer{border-top:1px solid rgba(255,255,255,0.06); padding:24px 0; color:var(--muted)}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; gap:12px}
+.footer-inner a{color:var(--muted); text-decoration:none}
+.footer-inner a:hover{color:#fff}
+
+/* Back to top */
+.back-to-top{position:fixed; right:16px; bottom:16px; width:42px; height:42px; border-radius:999px; border:0; background: linear-gradient(135deg, var(--primary), var(--primary-2)); color:#fff; box-shadow: var(--shadow); display:grid; place-items:center; opacity:0; transform: translateY(8px); transition: .25s ease all}
+.back-to-top.show{opacity:1; transform: translateY(0)}
+
+/* Reveal on scroll */
+.reveal{opacity:0; transform: translateY(10px); transition: .6s cubic-bezier(.2,.7,.2,1)}
+.reveal.visible{opacity:1; transform: translateY(0)}
+
+/* Accessibility */
+.sr-only{position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden}
+
+/* Game: Burger Blaster */
+.game .section-head p{max-width:600px}
+.game-wrap{background: var(--surface); border:1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding:18px; box-shadow: var(--shadow)}
+.hud{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; color:var(--muted)}
+.hud strong{color:var(--text)}
+.game-area{position:relative; height:360px; border:1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow:hidden; cursor: crosshair;
+  background:
+    radial-gradient(120px 80px at 20% 30%, rgba(255,90,60,0.08), transparent 60%),
+    radial-gradient(160px 120px at 80% 70%, rgba(255,209,102,0.08), transparent 60%),
+    rgba(255,255,255,0.02);
+}
+.game-cta{display:grid; place-items:center; gap:8px; margin-top:12px}
+.game-tip{color:var(--muted); margin:0}
+
+.burger{position:absolute; font-size:34px; line-height:1; user-select:none; filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5));
+  animation: pop .16s ease-out;
+}
+.burger:hover{transform: translateY(-2px)}
+.burger:active{transform: scale(.92)}
+
+@keyframes pop{from{transform:scale(.6); opacity:.4} to{transform:scale(1); opacity:1}}
+
+.splat{position:absolute; pointer-events:none; width:10px; height:10px; border-radius:999px; background: rgba(255,255,255,0.6); box-shadow:0 0 0 0 rgba(255,255,255,0.35); opacity:0.9;}
+.splat.animate{animation: splash .45s ease-out forwards}
+@keyframes splash{to{transform: scale(12); opacity:0; box-shadow:0 0 0 14px rgba(255,255,255,0)}}
+
+@media (max-width: 760px){
+  .game-area{height:300px}
+}

@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Remote Pro VAs — $5/hr Callers & VAs from the Philippines</title>
+  <meta name="description" content="Remote Pro VAs is a premier virtual assistant agency offering customer service, executive assistants, general admin, social media managers, and technical support for businesses in the USA, Canada, UK, and Australia. Hire top Filipino talent at $5/hour." />
+  <meta name="theme-color" content="#5b8cff" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="#top" aria-label="Remote Pro VAs Home">
+        <span class="brand__logo" aria-hidden="true">🌏</span>
+        <span class="brand__name">Remote Pro VAs</span>
+      </a>
+      <nav class="menu" aria-label="Primary Navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#how">How it works</a>
+        <a href="#testimonials">Results</a>
+        <a href="#faq">FAQ</a>
+        <a href="#game">Game</a>
+        <a class="btn btn--sm btn--ghost" href="https://calendly.com/d/cv3y-fqd-wdc/new-meeting" target="_blank" rel="noopener">Book a Call</a>
+        <a class="btn btn--sm btn--primary" href="#contact">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy reveal">
+          <p class="eyebrow">Philippines-based talent • Global clients</p>
+          <h1>World‑class Callers & Virtual Assistants at <span class="accent">$5/hr</span></h1>
+          <p class="subtext">Grow faster with reliable, English‑fluent professionals from the Philippines. Sales callers, appointment setters, customer support, lead gen, admin, and more — managed for quality and performance.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#contact">Get talent for $5/hr</a>
+            <a class="btn btn--ghost" href="#pricing">Estimate your cost</a>
+          </div>
+          <div class="badges">
+            <span class="badge">🇵🇭 Neutral accent</span>
+            <span class="badge">🕒 24/7 coverage</span>
+            <span class="badge">✔️ QA & training</span>
+            <span class="badge">★★★★★ Rated by clients</span>
+          </div>
+        </div>
+        <div class="hero__visual reveal">
+          <div class="card kpi">
+            <div class="kpi__row"><span>Appointments</span><strong>+212%</strong></div>
+            <div class="kpi__row"><span>Cost per lead</span><strong>-58%</strong></div>
+            <div class="kpi__row"><span>CSAT</span><strong>4.8/5</strong></div>
+            <div class="kpi__foot">Last 90 days avg across clients</div>
+          </div>
+          <div class="globe" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="hero__shapes" aria-hidden="true"></div>
+    </section>
+
+    <section id="about" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title reveal">About Remote Pro VAs</h2>
+        <p class="lead reveal">We are a dedicated virtual assistant agency serving businesses across the USA, Canada, UK, and Australia. Our mission is to help companies grow with skilled, reliable, and cost‑effective VAs trained in customer service, executive support, admin, social media, and tech.</p>
+        <div class="grid grid-3">
+          <div class="feature reveal">
+            <div class="feature__icon">🎯</div>
+            <h3>Mission</h3>
+            <p>Empower businesses with top Filipino talent while creating opportunities through our Masterclass programs.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature__icon">👑</div>
+            <h3>Vision</h3>
+            <p>Be the most trusted VA agency worldwide, connecting global businesses with outstanding remote professionals.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature__icon">📞</div>
+            <h3>Discovery Call</h3>
+            <p>Book a free discovery call to discuss your needs and meet matched candidates.</p>
+            <p><a class="btn btn--sm btn--primary" href="https://calendly.com/d/cv3y-fqd-wdc/new-meeting" target="_blank" rel="noopener">Book a Call</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="game" class="section">
+      <div class="container">
+        <h2 class="section__title reveal">Fight the Fire</h2>
+        <p class="lead reveal">Objective: put out the <strong>🔥 fires</strong> using your <strong>🧯 extinguisher</strong>. Move the <strong>🧑‍🚒 firefighter</strong> with <strong>WASD</strong> or <strong>Arrow Keys</strong>. Aim with your mouse and hold click to spray <strong>💧</strong> and <strong>💦</strong>.</p>
+        <div class="game__wrap reveal">
+          <canvas id="gameCanvas" width="960" height="540" aria-label="Fight the Fire game"></canvas>
+          <div class="hud" aria-hidden="true">
+            <div class="hud__left"><span>🧑‍🚒</span> <strong id="hudScore">0</strong> fires out</div>
+            <div class="hud__right"><span>🔥</span> <strong id="hudFires">0</strong> active</div>
+          </div>
+        </div>
+        <ul class="legend">
+          <li>🧑‍🚒 Move: WASD / Arrow Keys</li>
+          <li>🧯 Aim with mouse; hold click to spray 💧 💦</li>
+          <li>🔥 Fires spawn randomly — put them out to score!</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="benefits" class="section">
+      <div class="container">
+        <h2 class="section__title reveal">Why companies choose us</h2>
+        <div class="grid grid-3">
+          <div class="feature reveal">
+            <div class="feature__icon">🎯</div>
+            <h3>Performance‑driven</h3>
+            <p>Weekly goals, QA scorecards, and coaching ensure every hour drives pipeline and ROI.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature__icon">🧠</div>
+            <h3>Skilled & trained</h3>
+            <p>Pre‑vetted talent with strong English, sales etiquette, CRM fluency, and support skills.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature__icon">⚡</div>
+            <h3>Instant scale</h3>
+            <p>Start with 1 seat and scale to 20+ in days. We handle hiring, HR, payroll, and scheduling.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature__icon">🔒</div>
+            <h3>Security first</h3>
+            <p>Device management, NDAs, least‑privilege access, and compliance best practices.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature__icon">💬</div>
+            <h3>Clear communication</h3>
+            <p>Daily standups and weekly reports keep you informed on progress and outcomes.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature__icon">💸</div>
+            <h3>Flat $5/hr</h3>
+            <p>Simple pricing. No commitments. Pause anytime. Only pay for productive hours.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title reveal">Our services</h2>
+        <div class="grid grid-4">
+          <div class="role reveal">
+            <div class="role__icon">📞</div>
+            <h3>Customer Service VAs</h3>
+            <p>Handle customer inquiries via phone, chat, and email to boost CSAT and retention.</p>
+          </div>
+          <div class="role reveal">
+            <div class="role__icon">🗓️</div>
+            <h3>Executive Assistants</h3>
+            <p>Manage calendars, communications, travel, research, and executive workflows.</p>
+          </div>
+          <div class="role reveal">
+            <div class="role__icon">🧩</div>
+            <h3>General VAs</h3>
+            <p>Inbox, research, CRM updates, reporting, data entry, and general admin support.</p>
+          </div>
+          <div class="role reveal">
+            <div class="role__icon">📣</div>
+            <h3>Social Media Managers</h3>
+            <p>Content scheduling, community management, and performance reporting.</p>
+          </div>
+          <div class="role reveal">
+            <div class="role__icon">🛠️</div>
+            <h3>Technical Support VAs</h3>
+            <p>Troubleshooting, help desk workflows, documentation, and escalation routing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="container">
+        <div class="pricing__head reveal">
+          <h2 class="section__title">Simple, transparent pricing</h2>
+          <p class="lead">Flat <strong class="accent">$5 per hour</strong>. No minimums. Scale seats up or down anytime.</p>
+        </div>
+        <div class="pricing">
+          <div class="pricing__card reveal">
+            <div class="price">
+              <span class="currency">$</span>
+              <span class="amount">5</span>
+              <span class="per">/hr</span>
+            </div>
+            <ul class="price__list">
+              <li>Dedicated agent(s)</li>
+              <li>QA monitoring & coaching</li>
+              <li>Daily and weekly reporting</li>
+              <li>Tooling setup support</li>
+              <li>Timezone flexibility</li>
+            </ul>
+            <a class="btn btn--primary btn--block" href="#contact">Start at $5/hr</a>
+          </div>
+
+          <div class="calc reveal">
+            <h3>Quick cost calculator</h3>
+            <form class="calc__form" id="calcForm">
+              <label>
+                Number of agents
+                <input type="number" id="agents" min="1" max="100" value="2" required />
+              </label>
+              <label>
+                Hours per week (per agent)
+                <input type="number" id="hours" min="1" max="60" value="20" required />
+              </label>
+              <label>
+                Hourly rate (USD)
+                <input type="number" id="rate" min="5" step="0.5" value="5" />
+              </label>
+            </form>
+            <div class="calc__result">
+              <div><span>Weekly</span><strong id="weeklyCost">$200</strong></div>
+              <div><span>Monthly</span><strong id="monthlyCost">$866</strong></div>
+              <div class="calc__note">Monthly uses industry‑standard 4.33 weeks/month.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title reveal">Getting started is easy</h2>
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step__num">1</div>
+            <h3>Scope your needs</h3>
+            <p>Tell us your goals, tools, and working hours. We'll map the right playbook.</p>
+          </div>
+          <div class="step reveal">
+            <div class="step__num">2</div>
+            <h3>Meet your short‑list</h3>
+            <p>Interview pre‑vetted agents. Choose your favorites and confirm start dates.</p>
+          </div>
+          <div class="step reveal">
+            <div class="step__num">3</div>
+            <h3>Launch in days</h3>
+            <p>We set up scripts, accounts, trackers, and reporting. You get momentum fast.</p>
+          </div>
+          <div class="step reveal">
+            <div class="step__num">4</div>
+            <h3>Scale on demand</h3>
+            <p>Add seats or pause anytime. We continuously coach to hit your KPIs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="section">
+      <div class="container">
+        <h2 class="section__title reveal">What clients say</h2>
+        <div class="grid grid-3">
+          <blockquote class="quote reveal">
+            <p>“I can't imagine working without their support — a true game‑changer!”</p>
+            <footer>— Clarice Turner, Store Owner ★★★★★</footer>
+          </blockquote>
+          <blockquote class="quote reveal">
+            <p>“Impressed with the efficiency and professionalism. Smooth and hassle‑free.”</p>
+            <footer>— Brian Moten, Podcast Coach ★★★★★</footer>
+          </blockquote>
+          <blockquote class="quote reveal">
+            <p>“The matching experience was smooth and seamless.”</p>
+            <footer>— Sharon Roddy ★★★★★</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <h2 class="section__title reveal">Frequently asked questions</h2>
+        <div class="faq">
+          <details class="reveal">
+            <summary>What services do you offer?</summary>
+            <div>Customer service, executive assistants, general VAs, social media managers, and technical support VAs.</div>
+          </details>
+          <details class="reveal">
+            <summary>Who are your clients?</summary>
+            <div>We serve businesses across the USA, Canada, UK, and Australia with tailored VA solutions.</div>
+          </details>
+          <details class="reveal">
+            <summary>How can I hire a VA?</summary>
+            <div>Book a discovery call and we’ll present 2–3 matched candidates. You can start quickly after a short trial. <a href="https://calendly.com/d/cv3y-fqd-wdc/new-meeting" target="_blank" rel="noopener">Book a Call</a>.</div>
+          </details>
+          <details class="reveal">
+            <summary>Do you offer training?</summary>
+            <div>Yes — our Remote Pro VA Masterclass and BPO Masterclass prepare talent to be client‑ready.</div>
+          </details>
+          <details class="reveal">
+            <summary>How do you ensure quality?</summary>
+            <div>Rigorous vetting, skill‑based matching, ongoing training, weekly check‑ins, and progress tracking.</div>
+          </details>
+          <details class="reveal">
+            <summary>Where are your VAs located?</summary>
+            <div>We primarily hire in the Philippines and support clients globally (USA, Canada, UK, Australia).</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section section--contact">
+      <div class="container">
+        <div class="contact__wrap">
+          <div class="contact__copy reveal">
+            <h2 class="section__title">Let’s build your team</h2>
+            <p class="lead">Tell us what you need and we’ll match you with top Philippines‑based talent at <strong>$5/hour</strong>.</p>
+            <ul class="contact__bullets">
+              <li>Start with 1 seat. Scale as you grow.</li>
+              <li>Sales, support, admin, and more.</li>
+              <li>Risk‑free: pause anytime.</li>
+              <li>Email: <a href="mailto:info@remoteprovas.com">info@remoteprovas.com</a></li>
+              <li>Phone: <a href="tel:+639770769444">+63 977 076 9444</a></li>
+              <li>Location: Victorias City, Philippines • Hours: 9 AM – 5 PM</li>
+            </ul>
+          </div>
+          <form id="contactForm" class="contact__form reveal">
+            <label>
+              Name
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label>
+              Work email
+              <input type="email" name="email" placeholder="you@company.com" required />
+            </label>
+            <label>
+              Company
+              <input type="text" name="company" placeholder="Company LLC" />
+            </label>
+            <label>
+              Role needed
+              <select name="role">
+                <option>Cold caller</option>
+                <option>Appointment setter</option>
+                <option>Virtual assistant</option>
+                <option>Customer support</option>
+              </select>
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows="4" placeholder="What outcomes are you targeting?"></textarea>
+            </label>
+            <button type="submit" class="btn btn--primary btn--block">Get a proposal</button>
+            <p class="form__fine">We’ll open a pre‑filled email so you can hit send. No spam ever.</p>
+            <p class="form__fine" style="text-align:center">Prefer a call? <a href="https://calendly.com/d/cv3y-fqd-wdc/new-meeting" target="_blank" rel="noopener">Book a discovery call</a>.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="brand__logo">🌏</span>
+        <strong>Remote Pro VAs</strong>
+      </div>
+      <div class="footer__meta">
+        <span>Philippines‑based team • Serving clients worldwide</span>
+        <span>© <span id="year"></span> Remote Pro VAs. All rights reserved.</span>
+      </div>
+      <div class="footer__links">
+        <a href="#pricing">Pricing</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="toTop" id="toTop" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

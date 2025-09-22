@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Courses Online 123 Go — Learn AI & Tech Faster</title>
+  <meta name="description" content="Courses Online 123 Go is a sleek e‑commerce experience to discover, compare, and collect top AI and technology courses from trusted providers." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#" class="logo" aria-label="Courses Online 123 Go home">
+        <span class="logo-mark">CO</span>
+        <span class="logo-text">Courses Online <strong>123 Go</strong></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#catalog" class="nav-link">Catalog</a>
+        <a href="#categories" class="nav-link">Categories</a>
+        <a href="#about" class="nav-link">About</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="openCartBtn" class="btn cart-btn" aria-label="Open cart">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero" style="--hero-img: url('https://images.pexels.com/photos/17483874/pexels-photo-17483874.jpeg?auto=compress&cs=tinysrgb&h=1000');">
+    <div class="container hero-inner reveal">
+      <h1>Master AI and Tech — Fast.</h1>
+      <p>Shop a curated selection of world‑class courses in AI, Machine Learning, Python, Cloud, NLP, Computer Vision, and more. Build job‑ready skills with confidence.</p>
+      <div class="hero-actions">
+        <a href="#catalog" class="btn btn-primary">Browse Courses</a>
+        <a href="#categories" class="btn btn-ghost">Explore Categories</a>
+      </div>
+      <form class="hero-search" role="search" aria-label="Search courses">
+        <input id="searchInput" type="search" placeholder="Search e.g. Python, LLMs, Computer Vision…" autocomplete="off" />
+        <button type="button" id="clearSearch" class="clear-search" aria-label="Clear search">✕</button>
+      </form>
+      <div class="trust-row">
+        <span>Featuring courses from</span>
+        <ul>
+          <li>Harvard</li>
+          <li>Stanford</li>
+          <li>DeepLearning.AI</li>
+          <li>Google</li>
+          <li>Udacity</li>
+          <li>Coursera</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
+
+  <!-- Categories / Filters -->
+  <section class="section container" id="categories">
+    <div class="section-head">
+      <h2 class="reveal">Shop by Category</h2>
+      <div class="sort-controls reveal">
+        <label for="sortSelect">Sort</label>
+        <select id="sortSelect" aria-label="Sort courses">
+          <option value="pop">Popular</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating-desc">Rating</option>
+        </select>
+      </div>
+    </div>
+    <div class="chip-row reveal" id="categoryChips" role="tablist" aria-label="Filter by category">
+      <!-- chips injected by JS -->
+    </div>
+  </section>
+
+  <!-- Catalog -->
+  <section class="section" id="catalog">
+    <div class="container">
+      <div id="coursesGrid" class="grid reveal">
+        <!-- course cards injected by JS -->
+      </div>
+      <div id="emptyState" class="empty-state" hidden>
+        <div class="empty-card">
+          <h3>No courses match your filters</h3>
+          <p>Try clearing search or selecting fewer categories.</p>
+          <button class="btn" id="resetFiltersBtn">Reset Filters</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Assurance -->
+  <section class="section alt" id="about">
+    <div class="container about-grid reveal">
+      <div class="about-card">
+        <h3>Curated Quality</h3>
+        <p>We feature proven courses from trusted providers: university programs, respected platforms, and industry leaders. Learn from the best.</p>
+      </div>
+      <div class="about-card">
+        <h3>Learn Your Way</h3>
+        <p>Filter by topic, level, ratings, and price. Create a cart to plan your learning path and keep track of what’s next.</p>
+      </div>
+      <div class="about-card">
+        <h3>Always Up to Date</h3>
+        <p>Curriculum evolves quickly in AI. We keep this catalog fresh with up‑to‑date courses and practical tracks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Drawer -->
+  <aside id="cartDrawer" class="cart-drawer" aria-hidden="true" aria-labelledby="cartTitle" role="dialog">
+    <div class="cart-header">
+      <h3 id="cartTitle">Your Learning Cart</h3>
+      <button id="closeCartBtn" class="icon-btn" aria-label="Close cart">✕</button>
+    </div>
+    <div id="cartItems" class="cart-items">
+      <!-- items injected -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">$0</strong>
+      </div>
+      <button id="checkoutBtn" class="btn btn-primary" disabled>Checkout</button>
+    </div>
+  </aside>
+  <div id="scrim" class="scrim" hidden></div>
+
+  <!-- Checkout Modal -->
+  <dialog id="checkoutModal" class="modal">
+    <form method="dialog" class="modal-inner" id="checkoutForm">
+      <div class="modal-header">
+        <h3>Checkout</h3>
+        <button class="icon-btn" value="cancel" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <label>
+            Full name
+            <input type="text" id="nameInput" placeholder="Ada Lovelace" required />
+          </label>
+          <label>
+            Email address
+            <input type="email" id="emailInput" placeholder="you@example.com" required />
+          </label>
+        </div>
+        <div class="note">
+          This is a demo checkout that summarizes your order and provides official provider links for each course.
+        </div>
+        <div id="orderSummary" class="order-summary">
+          <!-- summary injected -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" value="cancel">Cancel</button>
+        <button id="placeOrderBtn" class="btn btn-primary" value="default">Place Order</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Back to Top -->
+  <button id="toTop" class="to-top" aria-label="Back to top">↑</button>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Courses Online 123 Go</strong>
+        <div class="muted">Images from Pexels. Course names and logos belong to their respective owners. This is a demo aggregator experience; pricing is indicative and may differ by provider.</div>
+      </div>
+      <div class="footer-links">
+        <a href="#hero">Top</a>
+        <a href="#catalog">Catalog</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>

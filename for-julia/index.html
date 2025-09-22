@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Julia's Burger House 🍔</title>
+  <meta name="description" content="Julia's Burger House — gourmet burgers, crispy sides, and craft shakes. Built with love and extra cheese." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%8D%94%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="logo" aria-label="Julia's Burger House">🍔 Julia's</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#menu">Menu</a>
+        <a href="#specials">Specials</a>
+        <a href="#testimonials">Love</a>
+        <a href="#locations">Visit</a>
+        <a href="#game">Game</a>
+      </nav>
+      <button class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy reveal">
+          <h1>Burgers that make your day better</h1>
+          <p>Smash patties, brioche buns, melty cheese. Fresh, fast, and unforgettable.</p>
+          <div class="actions">
+            <a href="#menu" class="btn btn-primary">Explore Menu</a>
+            <a href="#specials" class="btn btn-ghost">Today's Specials</a>
+          </div>
+          <div class="hero-stats">
+            <div><strong>12k+</strong><span>Happy Bites</span></div>
+            <div><strong>25</strong><span>Gourmet Options</span></div>
+            <div><strong>5★</strong><span>Locals Rated</span></div>
+          </div>
+        </div>
+        <div class="hero-art reveal">
+          <div class="stacked-photos">
+            <img src="https://images.unsplash.com/photo-1550317138-10000687a72b?q=80&w=1200&auto=format&fit=crop" alt="Gourmet burger" loading="eager"/>
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop" alt="Smash burger" loading="lazy"/>
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop" alt="Fries and dip" loading="lazy"/>
+          </div>
+        </div>
+      </div>
+      <div class="hero-gradient" aria-hidden="true"></div>
+    </section>
+
+    <!-- Specials -->
+    <section id="specials" class="specials section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Fresh off the grill</h2>
+          <p>Limited-time stacks. Blink and you might miss them.</p>
+        </div>
+        <div class="card-row">
+          <article class="card reveal">
+            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=1200&auto=format&fit=crop" alt="Truffle Melt Burger"/>
+            <div class="card-body">
+              <h3>Truffle Melt</h3>
+              <p>Smash patty, truffle aioli, caramelized onions, Swiss, brioche.</p>
+              <div class="card-meta">
+                <span class="price">$12.50</span>
+                <button class="btn add-to-cart" data-id="s1" data-name="Truffle Melt" data-price="12.50">Add</button>
+              </div>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://images.unsplash.com/photo-1606756790138-2616427f9e16?q=80&w=1200&auto=format&fit=crop" alt="Spicy Inferno Burger"/>
+            <div class="card-body">
+              <h3>Spicy Inferno</h3>
+              <p>Double smash, ghost pepper jam, pickles, cheddar, heat warning.</p>
+              <div class="card-meta">
+                <span class="price">$13.00</span>
+                <button class="btn add-to-cart" data-id="s2" data-name="Spicy Inferno" data-price="13.00">Add</button>
+              </div>
+            </div>
+          </article>
+          <article class="card reveal">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop" alt="Green Goddess Veggie"/>
+            <div class="card-body">
+              <h3>Green Goddess</h3>
+              <p>Grilled portobello, avocado smash, arugula, herby aioli, seeds.</p>
+              <div class="card-meta">
+                <span class="price">$11.00</span>
+                <button class="btn add-to-cart" data-id="s3" data-name="Green Goddess" data-price="11.00">Add</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Burger Blaster Game -->
+    <section id="game" class="game section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Burger Blaster</h2>
+          <p>Point. Click. Devour. Eat as many 🍔 as you can in 30 seconds!</p>
+        </div>
+        <div class="game-wrap reveal">
+          <div class="hud">
+            <div><strong>Score:</strong> <span id="gg-score">0</span></div>
+            <div><strong>Time:</strong> <span id="gg-time">30</span>s</div>
+            <div><strong>Accuracy:</strong> <span id="gg-acc">100%</span></div>
+          </div>
+          <div class="game-area" id="gg-area" aria-label="Burger game area" role="application">
+            <!-- burgers appear here -->
+          </div>
+          <div class="game-cta">
+            <button class="btn btn-primary" id="gg-start">Start Game</button>
+            <p class="game-tip">Tip: Misses lower your accuracy. Burgers despawn fast — stay sharp!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="menu section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Our Menu</h2>
+          <p>Filter by your vibe. Add what you love.</p>
+        </div>
+
+        <div class="filter-chips reveal" role="tablist" aria-label="Filter menu">
+          <button class="chip active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="chip" data-filter="beef" role="tab">Beef</button>
+          <button class="chip" data-filter="chicken" role="tab">Chicken</button>
+          <button class="chip" data-filter="veggie" role="tab">Veggie</button>
+          <button class="chip" data-filter="sides" role="tab">Sides</button>
+          <button class="chip" data-filter="shakes" role="tab">Shakes</button>
+        </div>
+
+        <div class="grid">
+          <!-- Example items -->
+          <article class="card item reveal" data-category="beef">
+            <img src="https://images.unsplash.com/photo-1550547660-2fd5d28fd3f9?q=80&w=1200&auto=format&fit=crop" alt="Classic Smash"/>
+            <div class="card-body">
+              <h3>Classic Smash</h3>
+              <p>American cheese, house sauce, onion, pickles.</p>
+              <div class="card-meta">
+                <span class="price">$9.50</span>
+                <button class="btn add-to-cart" data-id="m1" data-name="Classic Smash" data-price="9.50">Add</button>
+              </div>
+            </div>
+          </article>
+          <article class="card item reveal" data-category="beef">
+            <img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?q=80&w=1200&auto=format&fit=crop" alt="Bacon Deluxe"/>
+            <div class="card-body">
+              <h3>Bacon Deluxe</h3>
+              <p>Smoked bacon, cheddar, tomato, lettuce, special sauce.</p>
+              <div class="card-meta">
+                <span class="price">$11.50</span>
+                <button class="btn add-to-cart" data-id="m2" data-name="Bacon Deluxe" data-price="11.50">Add</button>
+              </div>
+            </div>
+          </article>
+          <article class="card item reveal" data-category="chicken">
+            <img src="https://images.unsplash.com/photo-1544025162-84f52f66f724?q=80&w=1200&auto=format&fit=crop" alt="Crispy Chick"/>
+            <div class="card-body">
+              <h3>Crispy Chick</h3>
+              <p>Buttermilk fried chicken, slaw, pickles, spicy mayo.</p>
+              <div class="card-meta">
+                <span class="price">$10.50</span>
+                <button class="btn add-to-cart" data-id="m3" data-name="Crispy Chick" data-price="10.50">Add</button>
+              </div>
+            </div>
+          </article>
+          <article class="card item reveal" data-category="veggie">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop" alt="Halloumi Stack"/>
+            <div class="card-body">
+              <h3>Halloumi Stack</h3>
+              <p>Grilled halloumi, roasted peppers, pesto, rocket.</p>
+              <div class="card-meta">
+                <span class="price">$10.00</span>
+                <button class="btn add-to-cart" data-id="m4" data-name="Halloumi Stack" data-price="10.00">Add</button>
+              </div>
+            </div>
+          </article>
+          <article class="card item reveal" data-category="sides">
+            <img src="https://images.unsplash.com/photo-1541599188778-d9113a3e2fdd?q=80&w=1200&auto=format&fit=crop" alt="Crispy Fries"/>
+            <div class="card-body">
+              <h3>Crispy Fries</h3>
+              <p>Twice-cooked golden fries. Choose your dip.</p>
+              <div class="card-meta">
+                <span class="price">$3.50</span>
+                <button class="btn add-to-cart" data-id="m5" data-name="Crispy Fries" data-price="3.50">Add</button>
+              </div>
+            </div>
+          </article>
+          <article class="card item reveal" data-category="shakes">
+            <img src="https://images.unsplash.com/photo-1556196140-1fb724238998?q=80&w=1200&auto=format&fit=crop" alt="Vanilla Bean Shake"/>
+            <div class="card-body">
+              <h3>Vanilla Bean Shake</h3>
+              <p>Thick shake with real vanilla bean and cream.</p>
+              <div class="card-meta">
+                <span class="price">$4.50</span>
+                <button class="btn add-to-cart" data-id="m6" data-name="Vanilla Bean Shake" data-price="4.50">Add</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>What our regulars say</h2>
+          <p>If happiness had a flavor, it would be this.</p>
+        </div>
+
+        <div class="carousel reveal" aria-roledescription="carousel">
+          <div class="slides">
+            <figure class="slide current">
+              <blockquote>Best smash burger in town. Crispy edges, juicy center. I dream about it.</blockquote>
+              <figcaption>— Cam, software dev</figcaption>
+            </figure>
+            <figure class="slide">
+              <blockquote>Green Goddess made me forget it's veggie. Texture and flavor on point.</blockquote>
+              <figcaption>— Priya, foodie</figcaption>
+            </figure>
+            <figure class="slide">
+              <blockquote>Fries stay crunchy even after the walk home. Witchcraft.</blockquote>
+              <figcaption>— Leo, drummer</figcaption>
+            </figure>
+          </div>
+          <div class="controls" aria-label="Carousel controls">
+            <button class="prev" aria-label="Previous">‹</button>
+            <button class="next" aria-label="Next">›</button>
+          </div>
+          <div class="dots" role="tablist" aria-label="Choose slide"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Locations -->
+    <section id="locations" class="locations section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Come say hi</h2>
+          <p>Find us where the grills are hottest.</p>
+        </div>
+        <div class="card-row">
+          <div class="mini-card reveal">
+            <h3>Downtown</h3>
+            <p>123 Main St<br/>Mon–Sun 11a–10p</p>
+          </div>
+          <div class="mini-card reveal">
+            <h3>Riverside</h3>
+            <p>77 River Rd<br/>Mon–Sat 11a–9p</p>
+          </div>
+          <div class="mini-card reveal">
+            <h3>Uptown</h3>
+            <p>451 Peak Ave<br/>Tue–Sun 12p–10p</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="cta section">
+      <div class="container reveal">
+        <h2>Get secret menu drops</h2>
+        <p>We only email when it's juicy. Unsubscribe anytime.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <label class="sr-only" for="email">Email</label>
+          <input type="email" id="email" placeholder="you@hungry.com" required />
+          <button class="btn btn-primary">Notify me</button>
+        </form>
+        <p class="form-note" aria-live="polite"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="brand">🍔 Julia's Burger House</div>
+      <div class="links">
+        <a href="#menu">Menu</a>
+        <a href="#locations">Locations</a>
+        <a href="#top">Back to top</a>
+      </div>
+      <div class="small">© <span id="year"></span> Julia's. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
