@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliances - Strategic Business Alliances</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #667eea;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #667eea;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #benefits {
+            background: #f8f9fa;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .benefit-item h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .benefit-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        #services {
+            background: white;
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid #667eea30;
+        }
+
+        .service-box h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-box ul {
+            list-style: none;
+            color: #666;
+        }
+
+        .service-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        #cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        #cta-section h2 {
+            color: white;
+        }
+
+        #cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .secondary-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1rem;
+            margin: 0 1rem;
+        }
+
+        .secondary-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-credit {
+            font-size: 0.9rem;
+            color: #a0aec0;
+            margin-top: 1.5rem;
+            border-top: 1px solid #4a5568;
+            padding-top: 1.5rem;
+        }
+
+        .footer-credit a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer-credit a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .features, .benefits-grid, .services-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Eliances</div>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Where Entrepreneurs Align™</h1>
+            <p>A unique community for influential entrepreneurs to foster meaningful business relationships</p>
+            <a href="#contact" class="cta-button">Join Now</a>
+        </div>
+    </section>
+
+    <section id="features" class="container">
+        <h2>Why Choose Eliances?</h2>
+        <p class="section-subtitle">A high-level community of entrepreneurs with resources, influence, skills, contacts, and imagination</p>
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">👥</div>
+                <h3>Influential Community</h3>
+                <p>Connect with civic leaders, CEOs of Inc 5000/500 companies, entrepreneurs, consultants, and investors.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🎯</div>
+                <h3>Curated Experiences</h3>
+                <p>Participate in exclusive events and experiences designed to foster meaningful connections and relationships.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">�</div>
+                <h3>Heroes Radio Show</h3>
+                <p>Learn from industry leaders through our podcast featuring thought-provoking conversations with successful entrepreneurs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">�</div>
+                <h3>Global Network</h3>
+                <p>Access a worldwide community of the most influential and intellectual individuals across industries.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">�</div>
+                <h3>Resources & Influence</h3>
+                <p>Leverage collective resources, influence, and expertise to accelerate your business growth.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🤝</div>
+                <h3>Authentic Relationships</h3>
+                <p>We're not a group, village, or networking event - we're a true community built on genuine business relationships.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits">
+        <div class="container">
+            <h2>Member Benefits</h2>
+            <p class="section-subtitle">Join a community of influential entrepreneurs and unlock unlimited opportunities</p>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <h4>🤝 Meaningful Connections</h4>
+                    <p>Build authentic relationships with successful entrepreneurs, executives, and industry leaders.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>📚 Knowledge Sharing</h4>
+                    <p>Access insights and expertise from some of the most influential minds in business.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>🎤 Visibility & Recognition</h4>
+                    <p>Gain exposure through our Heroes Radio Show and exclusive community events.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>� Business Opportunities</h4>
+                    <p>Discover partnerships, investments, and collaborations within our global network.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>🌐 Global Reach</h4>
+                    <p>Connect with influential entrepreneurs across the world and expand your business horizons.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>⭐ Exclusive Experiences</h4>
+                    <p>Participate in curated events and experiences designed for high-level entrepreneurs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="container">
+        <h2>What We Offer</h2>
+        <p class="section-subtitle">Curated experiences and opportunities for entrepreneurs to align and grow</p>
+        <div class="services-list">
+            <div class="service-box">
+                <h3>Elianceships</h3>
+                <ul>
+                    <li>Strategic business partnerships</li>
+                    <li>Collaborative opportunities</li>
+                    <li>Joint ventures & alliances</li>
+                    <li>Mentorship connections</li>
+                </ul>
+            </div>
+            <div class="service-box">
+                <h3>Heroes Radio Show</h3>
+                <ul>
+                    <li>Interviews with industry leaders</li>
+                    <li>Thought-provoking conversations</li>
+                    <li>Business insights & lessons</li>
+                    <li>Inspiration from successful entrepreneurs</li>
+                </ul>
+            </div>
+            <div class="service-box">
+                <h3>Community Events & Experiences</h3>
+                <ul>
+                    <li>Exclusive networking events</li>
+                    <li>Member experiences</li>
+                    <li>Photo galleries & memories</li>
+                    <li>Global community gatherings</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta-section">
+        <div class="container">
+            <h2>Ready to Align with Influential Entrepreneurs?</h2>
+            <p>Join our global community and discover unlimited opportunities for growth and collaboration</p>
+            <a href="https://www.eliances.com/public/5.cfm" class="secondary-button">Join Now</a>
+            <a href="https://www.eliances.com/public/Who-We-Are.cfm" class="secondary-button">Learn More</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#features">Features</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#services">Services</a>
+                <a href="mailto:contact@eliances.com">Contact</a>
+            </div>
+            <div class="footer-credit">
+                <p>Demo site by <a href="https://mattyjacks.com" target="_blank">MattyJacks.com</a></p>
+                <p>&copy; 2025 Eliances. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
