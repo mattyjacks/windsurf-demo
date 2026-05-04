@@ -1,0 +1,231 @@
+<!-- CUSTOM LIQUID SECTION 3: FEATURED PRODUCTS SHOWCASE WITH ANIMATIONS -->
+<!-- Placement: Home page, below collections section -->
+
+<style>
+  .LIQ-featured-products {
+    padding: max(20px, calc(var(--spacing-scale, 1) * 48px));
+    background: #fff;
+  }
+
+  .LIQ-featured-products__container {
+    max-width: 120rem;
+    margin: 0 auto;
+  }
+
+  .LIQ-featured-products__title {
+    font-size: clamp(2.25rem, 4.8vw, 3rem);
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 3rem 0;
+    color: #000;
+    animation: LIQ-fadeInDown 0.8s ease-out both;
+  }
+
+  .LIQ-featured-products__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .LIQ-product-card {
+    text-align: center;
+    transition: transform 0.4s ease;
+    animation: LIQ-fadeInUp 0.6s ease-out both;
+    opacity: 0;
+  }
+
+  .LIQ-product-card:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .LIQ-product-card:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .LIQ-product-card:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .LIQ-product-card:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  .LIQ-product-card__image-wrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    margin-bottom: 1rem;
+    background: #f5f1ed;
+  }
+
+  .LIQ-product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.5s ease, transform 0.5s ease;
+  }
+
+  .LIQ-product-card:hover .LIQ-product-card__image {
+    filter: brightness(1.1) saturate(1.15);
+    transform: scale(1.05);
+  }
+
+  .LIQ-product-card__title {
+    font-size: 1rem;
+    font-family: Geist, sans-serif;
+    font-weight: 400;
+    margin: 0.5rem 0;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .LIQ-product-card__price {
+    font-size: 0.875rem;
+    color: #660033;
+    font-weight: 800;
+    margin: 0.5rem 0;
+    letter-spacing: 0.05em;
+  }
+
+  .LIQ-product-card__button {
+    margin-top: 1rem;
+    padding: 12px 24px;
+    background: #000;
+    color: #fff;
+    border: none;
+    font-family: Geist, sans-serif;
+    font-size: 0.875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .LIQ-product-card__button:hover {
+    background: #333;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  @keyframes LIQ-fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes LIQ-fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<div class="LIQ-featured-products">
+  
+  <div class="LIQ-featured-products__container">
+    
+    <!-- Section Title -->
+    <h2 class="LIQ-featured-products__title">
+      Featured Products
+    </h2>
+    
+    <!-- Products Grid -->
+    <div class="LIQ-featured-products__grid">
+      
+      <!-- Product Card 1 -->
+      <div class="LIQ-product-card">
+        <div class="LIQ-product-card__image-wrapper">
+          <img 
+            src="https://1gce5f-kz.myshopify.com/cdn/shop/files/product-1.jpg?v=1" 
+            alt="Verenne" 
+            class="LIQ-product-card__image"
+          >
+        </div>
+        <h3 class="LIQ-product-card__title">
+          Verenne
+        </h3>
+        <p class="LIQ-product-card__price">
+          120.00 GEL
+        </p>
+        <button class="LIQ-product-card__button">
+          Add to Cart
+        </button>
+      </div>
+      
+      <!-- Product Card 2 -->
+      <div class="LIQ-product-card">
+        <div class="LIQ-product-card__image-wrapper">
+          <img 
+            src="https://1gce5f-kz.myshopify.com/cdn/shop/files/product-2.jpg?v=1" 
+            alt="აბრეშუმის კაბა" 
+            class="LIQ-product-card__image"
+          >
+        </div>
+        <h3 class="LIQ-product-card__title">
+          აბრეშუმის კაბა
+        </h3>
+        <p class="LIQ-product-card__price">
+          160.00 GEL
+        </p>
+        <button class="LIQ-product-card__button">
+          Add to Cart
+        </button>
+      </div>
+      
+      <!-- Product Card 3 -->
+      <div class="LIQ-product-card">
+        <div class="LIQ-product-card__image-wrapper">
+          <img 
+            src="https://1gce5f-kz.myshopify.com/cdn/shop/files/product-3.jpg?v=1" 
+            alt="მოკასინი კრემისფერი" 
+            class="LIQ-product-card__image"
+          >
+        </div>
+        <h3 class="LIQ-product-card__title">
+          მოკასინი კრემისფერი
+        </h3>
+        <p class="LIQ-product-card__price">
+          175.00 GEL
+        </p>
+        <button class="LIQ-product-card__button">
+          Add to Cart
+        </button>
+      </div>
+      
+      <!-- Product Card 4 -->
+      <div class="LIQ-product-card">
+        <div class="LIQ-product-card__image-wrapper">
+          <img 
+            src="https://1gce5f-kz.myshopify.com/cdn/shop/files/product-4.jpg?v=1" 
+            alt="ტილოს ორეული" 
+            class="LIQ-product-card__image"
+          >
+        </div>
+        <h3 class="LIQ-product-card__title">
+          ტილოს ორეული
+        </h3>
+        <p class="LIQ-product-card__price">
+          165.00 GEL
+        </p>
+        <button class="LIQ-product-card__button">
+          Add to Cart
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>

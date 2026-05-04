@@ -1,0 +1,177 @@
+{% comment %}
+  Shopify Liquid - Global Theme CSS Application
+  Applies 10 global theme improvements with deep-sea aesthetic
+  
+  USAGE: In theme.liquid <head>, use:
+  {% render 'global-theme' %}
+{% endcomment %}
+
+{% style %}
+  /* --- THE 10 GLOBAL THEME IMPROVEMENTS --- */
+
+  /* 1. Global Deep-Sea Base */
+  :root {
+    --LIQ1-color-ocean-deep: #020b14;
+    --LIQ1-color-ocean-teal: #008080;
+    --LIQ1-color-passion-magenta: #660033;
+    --LIQ1-color-bioluminescent: #4dffff;
+    --LIQ1-color-text-light: #e0f7f7;
+  }
+
+  body, .gradient, .page-width, main {
+    background-color: var(--LIQ1-color-ocean-deep) !important;
+    color: var(--LIQ1-color-text-light) !important;
+  }
+
+  /* Override Shopify color scheme variables */
+  :root, .color-scheme-1, .color-scheme-2, .color-scheme-3, .color-scheme-4, .color-scheme-5, .color-scheme-6, .color-scheme-7 {
+    --color-background: var(--LIQ1-color-ocean-deep) !important;
+    --color-foreground: var(--LIQ1-color-text-light) !important;
+  }
+
+  /* Override all section backgrounds */
+  .section-background {
+    background-color: var(--LIQ1-color-ocean-deep) !important;
+  }
+
+  /* 2. Glassmorphism Header */
+  .header-wrapper, sticky-header, header, .shopify-section-group-header-group {
+    background: var(--LIQ1-color-ocean-deep) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 128, 128, 0.2);
+  }
+
+  /* 3. Liquid Energy Buttons */
+  .button, .btn, .shopify-payment-button__button {
+    background: linear-gradient(45deg, var(--LIQ1-color-ocean-teal), var(--LIQ1-color-passion-magenta)) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 2px !important;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease !important;
+  }
+  .button:hover, .btn:hover, .shopify-payment-button__button:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 25px rgba(102, 0, 51, 0.4) !important;
+  }
+
+  /* 4. Buoyant Product Cards */
+  .card-wrapper {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    background: transparent !important;
+    border-radius: 8px;
+  }
+  .card-wrapper:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 128, 128, 0.15);
+  }
+
+  /* 5. Reef-Pop Image Hover */
+  .media > img, .card__media img {
+    border-radius: 6px;
+    transition: filter 0.5s ease;
+  }
+  .card-wrapper:hover .media > img {
+    filter: contrast(1.15) saturate(1.2);
+  }
+
+  /* 6. Passionate Pricing */
+  .price-item, .price {
+    color: var(--LIQ1-color-passion-magenta) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.05em;
+  }
+
+  /* 7. Bioluminescent Selection */
+  ::selection {
+    background-color: var(--LIQ1-color-ocean-teal);
+    color: #fff;
+    text-shadow: 0 0 5px var(--LIQ1-color-bioluminescent);
+  }
+
+  /* 8. Wave Underline Links */
+  a:not(.button):not(.header__menu-item) {
+    text-decoration: none !important;
+    position: relative;
+    color: inherit;
+  }
+  a:not(.button):not(.header__menu-item)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--LIQ1-color-bioluminescent);
+    transition: width 0.3s ease-in-out;
+  }
+  a:not(.button):not(.header__menu-item):hover::after {
+    width: 100%;
+  }
+
+  /* 9. Organic Typography */
+  h1, h2, h3, h4, h5, .h1, .h2, .h3, .rich-text__heading {
+    color: #ffffff !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* 10. Abyssal Footer */
+  .footer {
+    background: linear-gradient(to top, #010408, var(--LIQ1-color-ocean-deep)) !important;
+    border-top: 1px solid rgba(0, 128, 128, 0.2) !important;
+  }
+
+
+  /* --- PREVIOUS BANNER ANIMATION --- */
+
+  .banner, .logo-banner, .image-banner {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .banner::after, .logo-banner::after, .image-banner::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(
+      -45deg,
+      rgba(4, 26, 64, 0.5),   
+      rgba(0, 128, 128, 0.4), 
+      rgba(102, 0, 51, 0.4)   
+    );
+    background-size: 400% 400%;
+    animation: LIQ1-oceanicSwell 12s ease infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .banner::before, .logo-banner::before, .image-banner::before {
+    content: "";
+    position: absolute;
+    top: -200px; left: 0; right: 0; bottom: -200px;
+    background-image:
+      radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+      radial-gradient(3px 3px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.6), rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: LIQ1-starDrift 20s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.8;
+  }
+
+  @keyframes LIQ1-oceanicSwell {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes LIQ1-starDrift {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-200px); }
+  }
+{% endstyle %}

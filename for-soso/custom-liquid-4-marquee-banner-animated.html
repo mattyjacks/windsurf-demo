@@ -1,0 +1,77 @@
+<!-- CUSTOM LIQUID SECTION 4: ANIMATED MARQUEE BANNER -->
+<!-- Placement: Home page, between featured products and footer -->
+
+<style>
+  .LIQ-marquee-section {
+    background: #e8dfd5;
+    padding: max(20px, calc(var(--spacing-scale, 1) * 48px)) 0;
+    overflow: hidden;
+    animation: LIQ-fadeInDown 0.8s ease-out both;
+  }
+
+  .LIQ-marquee-wrapper {
+    display: flex;
+    gap: 100px;
+    animation: LIQ-marqueeScroll 25s linear infinite;
+    white-space: nowrap;
+    will-change: transform;
+  }
+
+  .LIQ-marquee-wrapper:hover {
+    animation-play-state: paused;
+  }
+
+  .LIQ-marquee-text {
+    font-size: clamp(2rem, 8vw, 5.5rem);
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+    flex-shrink: 0;
+    color: #000;
+  }
+
+  @keyframes LIQ-fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes LIQ-marqueeScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-25%);
+    }
+  }
+</style>
+
+<div class="LIQ-marquee-section">
+  
+  <div class="LIQ-marquee-wrapper">
+    
+    <h2 class="LIQ-marquee-text">
+      SHOP NOW
+    </h2>
+    
+    <h2 class="LIQ-marquee-text">
+      SHOP NOW
+    </h2>
+    
+    <h2 class="LIQ-marquee-text">
+      SHOP NOW
+    </h2>
+    
+    <h2 class="LIQ-marquee-text">
+      SHOP NOW
+    </h2>
+    
+  </div>
+</div>

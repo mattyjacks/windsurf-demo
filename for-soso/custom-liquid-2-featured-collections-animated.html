@@ -1,0 +1,180 @@
+<!-- CUSTOM LIQUID SECTION 2: FEATURED COLLECTIONS GRID WITH ANIMATIONS -->
+<!-- Placement: Home page, below the hero banner -->
+
+<style>
+  .LIQ-collections-grid {
+    padding: max(20px, calc(var(--spacing-scale, 1) * 48px));
+    background: #f5f1ed;
+  }
+
+  .LIQ-collections-grid__container {
+    max-width: 120rem;
+    margin: 0 auto;
+  }
+
+  .LIQ-collections-grid__title {
+    font-size: clamp(2.25rem, 4.8vw, 3rem);
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 3rem 0;
+    color: #000;
+    animation: LIQ-fadeInDown 0.8s ease-out both;
+  }
+
+  .LIQ-collections-grid__wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .LIQ-collection-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    aspect-ratio: 4/5;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: LIQ-scaleIn 0.6s ease-out both;
+    opacity: 0;
+  }
+
+  .LIQ-collection-card:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .LIQ-collection-card:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .LIQ-collection-card:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .LIQ-collection-card:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  .LIQ-collection-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
+  }
+
+  .LIQ-collection-card:hover .LIQ-collection-card__image {
+    transform: scale(1.08);
+    filter: brightness(1.15) saturate(1.2);
+  }
+
+  .LIQ-collection-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .LIQ-collection-card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: white;
+  }
+
+  .LIQ-collection-card__title {
+    font-size: 1.5rem;
+    font-family: 'Bodoni Moda', serif;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @keyframes LIQ-fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes LIQ-scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
+
+<div class="LIQ-collections-grid">
+  
+  <div class="LIQ-collections-grid__container">
+    
+    <!-- Section Title -->
+    <h2 class="LIQ-collections-grid__title">
+      Collections
+    </h2>
+    
+    <!-- Collections Grid -->
+    <div class="LIQ-collections-grid__wrapper">
+      
+      <!-- Collection Card 1 -->
+      <div class="LIQ-collection-card">
+        <img 
+          src="https://1gce5f-kz.myshopify.com/cdn/shop/files/collection-1.jpg?v=1" 
+          alt="Dresses" 
+          class="LIQ-collection-card__image"
+        >
+        <div class="LIQ-collection-card__overlay">
+          <h3 class="LIQ-collection-card__title">Dresses</h3>
+        </div>
+      </div>
+      
+      <!-- Collection Card 2 -->
+      <div class="LIQ-collection-card">
+        <img 
+          src="https://1gce5f-kz.myshopify.com/cdn/shop/files/collection-2.jpg?v=1" 
+          alt="Outerwear" 
+          class="LIQ-collection-card__image"
+        >
+        <div class="LIQ-collection-card__overlay">
+          <h3 class="LIQ-collection-card__title">Outerwear</h3>
+        </div>
+      </div>
+      
+      <!-- Collection Card 3 -->
+      <div class="LIQ-collection-card">
+        <img 
+          src="https://1gce5f-kz.myshopify.com/cdn/shop/files/collection-3.jpg?v=1" 
+          alt="Accessories" 
+          class="LIQ-collection-card__image"
+        >
+        <div class="LIQ-collection-card__overlay">
+          <h3 class="LIQ-collection-card__title">Accessories</h3>
+        </div>
+      </div>
+      
+      <!-- Collection Card 4 -->
+      <div class="LIQ-collection-card">
+        <img 
+          src="https://1gce5f-kz.myshopify.com/cdn/shop/files/collection-4.jpg?v=1" 
+          alt="Shoes" 
+          class="LIQ-collection-card__image"
+        >
+        <div class="LIQ-collection-card__overlay">
+          <h3 class="LIQ-collection-card__title">Shoes</h3>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

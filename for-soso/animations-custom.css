@@ -1,0 +1,269 @@
+/* CUSTOM ANIMATIONS FOR KETEVANNE'S SECTIONS */
+/* Add this file to Shopify: Online Store > Snippets > animations-custom.css */
+
+/* ===== HERO BANNER ANIMATIONS ===== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    text-shadow: 2px 2px 16px rgba(0, 0, 0, 0.7);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* ===== HERO BANNER ANIMATIONS ===== */
+.custom-hero-banner h1 {
+  animation: fadeInDown 0.8s ease-out 0.2s both;
+}
+
+.custom-hero-banner p {
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.custom-hero-banner a {
+  animation: scaleIn 0.6s ease-out 0.6s both;
+}
+
+.custom-hero-banner a:hover {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* ===== COLLECTIONS GRID ANIMATIONS ===== */
+.custom-collections-grid h2 {
+  animation: fadeInDown 0.8s ease-out both;
+}
+
+.custom-collections-grid div[style*="aspect-ratio"] {
+  animation: scaleIn 0.6s ease-out both;
+  opacity: 0;
+}
+
+.custom-collections-grid div[style*="aspect-ratio"]:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.custom-collections-grid div[style*="aspect-ratio"]:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.custom-collections-grid div[style*="aspect-ratio"]:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.custom-collections-grid div[style*="aspect-ratio"]:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.custom-collections-grid div[style*="aspect-ratio"] img {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
+}
+
+.custom-collections-grid div[style*="aspect-ratio"]:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.15) saturate(1.2);
+}
+
+/* ===== FEATURED PRODUCTS ANIMATIONS ===== */
+.custom-featured-products h2 {
+  animation: fadeInDown 0.8s ease-out both;
+}
+
+.custom-featured-products div[style*="text-align: center"] {
+  animation: fadeInUp 0.6s ease-out both;
+  opacity: 0;
+}
+
+.custom-featured-products div[style*="text-align: center"]:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.custom-featured-products div[style*="text-align: center"]:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.custom-featured-products div[style*="text-align: center"]:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.custom-featured-products div[style*="text-align: center"]:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.custom-featured-products img {
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.custom-featured-products div[style*="text-align: center"]:hover img {
+  filter: brightness(1.1) saturate(1.15);
+  transform: scale(1.05);
+}
+
+.custom-featured-products button {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.custom-featured-products button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== MARQUEE ANIMATIONS ===== */
+.custom-marquee-section {
+  animation: fadeInDown 0.8s ease-out both;
+}
+
+.marquee-wrapper {
+  animation: scroll 25s linear infinite;
+}
+
+.marquee-wrapper:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
+}
+
+/* ===== NEWSLETTER ANIMATIONS ===== */
+.custom-newsletter-section {
+  animation: fadeInUp 0.8s ease-out both;
+}
+
+.custom-newsletter-section h2 {
+  animation: slideInLeft 0.6s ease-out 0.1s both;
+}
+
+.custom-newsletter-section p {
+  animation: slideInRight 0.6s ease-out 0.2s both;
+}
+
+.custom-newsletter-section form {
+  animation: scaleIn 0.6s ease-out 0.3s both;
+}
+
+.custom-newsletter-section input {
+  transition: all 0.3s ease;
+}
+
+.custom-newsletter-section input:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.custom-newsletter-section button {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.custom-newsletter-section button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== SMOOTH SCROLL BEHAVIOR ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== INTERSECTION OBSERVER ANIMATIONS ===== */
+.fade-in {
+  animation: fadeInUp 0.8s ease-out both;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.8s ease-out both;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.8s ease-out both;
+}
+
+.scale-in {
+  animation: scaleIn 0.6s ease-out both;
+}

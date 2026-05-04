@@ -1,0 +1,176 @@
+<!-- CUSTOM LIQUID SECTION 5: NEWSLETTER SIGNUP CTA WITH ANIMATIONS -->
+<!-- Placement: Home page, just before footer (or in footer area) -->
+
+<style>
+  .LIQ-newsletter-section {
+    background: linear-gradient(135deg, #f5f1ed 0%, #e8dfd5 100%);
+    padding: max(20px, calc(var(--spacing-scale, 1) * 64px));
+    text-align: center;
+    animation: LIQ-fadeInUp 0.8s ease-out both;
+  }
+
+  .LIQ-newsletter-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .LIQ-newsletter-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 1rem 0;
+    color: #000;
+    animation: LIQ-slideInLeft 0.6s ease-out 0.1s both;
+  }
+
+  .LIQ-newsletter-subtitle {
+    font-size: 0.875rem;
+    font-family: Geist, sans-serif;
+    color: #333;
+    margin: 0 0 2rem 0;
+    line-height: 1.6;
+    animation: LIQ-slideInRight 0.6s ease-out 0.2s both;
+  }
+
+  .LIQ-newsletter-form {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1rem;
+    animation: LIQ-scaleIn 0.6s ease-out 0.3s both;
+  }
+
+  .LIQ-newsletter-input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 2px solid #000;
+    border-right: none;
+    font-family: Geist, sans-serif;
+    font-size: 0.875rem;
+    background: transparent;
+    color: #000;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .LIQ-newsletter-input::placeholder {
+    color: #999;
+  }
+
+  .LIQ-newsletter-input:focus {
+    background: rgba(0, 0, 0, 0.02);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .LIQ-newsletter-button {
+    padding: 14px 32px;
+    background: #000;
+    color: #fff;
+    border: 2px solid #000;
+    font-family: Geist, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .LIQ-newsletter-button:hover {
+    background: #333;
+    border-color: #333;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .LIQ-newsletter-notice {
+    font-size: 0.75rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @keyframes LIQ-fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes LIQ-slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes LIQ-slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes LIQ-scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
+
+<div class="LIQ-newsletter-section">
+  
+  <div class="LIQ-newsletter-container">
+    
+    <!-- Heading -->
+    <h2 class="LIQ-newsletter-title">
+      Get on the List
+    </h2>
+    
+    <!-- Subheading -->
+    <p class="LIQ-newsletter-subtitle">
+      Subscribe to our newsletter for exclusive offers, new arrivals, and insider updates from Ketevanne's.
+    </p>
+    
+    <!-- Newsletter Form -->
+    <form class="LIQ-newsletter-form">
+      <input 
+        type="email" 
+        placeholder="Enter your email" 
+        required
+        class="LIQ-newsletter-input"
+      >
+      <button 
+        type="submit"
+        class="LIQ-newsletter-button"
+      >
+        Subscribe
+      </button>
+    </form>
+    
+    <!-- Privacy Notice -->
+    <p class="LIQ-newsletter-notice">
+      We respect your privacy. Unsubscribe at any time.
+    </p>
+    
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<!-- CUSTOM LIQUID SECTION 4: ANIMATED MARQUEE BANNER -->
+<!-- Placement: Home page, between featured products and footer -->
+
+<div class="custom-marquee-section" style="background: #e8dfd5; padding: max(20px, calc(var(--spacing-scale, 1) * 48px)) 0; overflow: hidden;">
+  
+  <div class="marquee-wrapper" style="display: flex; gap: 100px; animation: scroll 20s linear infinite; white-space: nowrap;">
+    
+    <h2 style="font-size: clamp(2rem, 8vw, 5.5rem); font-family: 'Bodoni Moda', serif; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; margin: 0; flex-shrink: 0; color: #000;">
+      SHOP NOW
+    </h2>
+    
+    <h2 style="font-size: clamp(2rem, 8vw, 5.5rem); font-family: 'Bodoni Moda', serif; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; margin: 0; flex-shrink: 0; color: #000;">
+      SHOP NOW
+    </h2>
+    
+    <h2 style="font-size: clamp(2rem, 8vw, 5.5rem); font-family: 'Bodoni Moda', serif; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; margin: 0; flex-shrink: 0; color: #000;">
+      SHOP NOW
+    </h2>
+    
+    <h2 style="font-size: clamp(2rem, 8vw, 5.5rem); font-family: 'Bodoni Moda', serif; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; margin: 0; flex-shrink: 0; color: #000;">
+      SHOP NOW
+    </h2>
+    
+  </div>
+</div>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-25%);
+    }
+  }
+  
+  .custom-marquee-section {
+    position: relative;
+  }
+  
+  .marquee-wrapper {
+    will-change: transform;
+  }
+</style>

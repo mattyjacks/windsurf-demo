@@ -1,0 +1,77 @@
+<!-- CUSTOM LIQUID SECTION 2: FEATURED COLLECTIONS GRID -->
+<!-- Placement: Home page, below the hero banner -->
+
+<div class="custom-collections-grid" style="padding: max(20px, calc(var(--spacing-scale, 1) * 48px)); background: #f5f1ed;">
+  
+  <div style="max-width: 120rem; margin: 0 auto;">
+    
+    <!-- Section Title -->
+    <h2 style="font-size: clamp(2.25rem, 4.8vw, 3rem); font-family: 'Bodoni Moda', serif; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; margin: 0 0 3rem 0; color: #000;">
+      Collections
+    </h2>
+    
+    <!-- Collections Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+      
+      <!-- Collection Card 1 -->
+      <div style="position: relative; overflow: hidden; border-radius: 0; aspect-ratio: 4/5; cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease;">
+        <img 
+          src="https://1gce5f-kz.myshopify.com/cdn/shop/files/collection-1.jpg?v=1" 
+          alt="Dresses" 
+          style="width: 100%; height: 100%; object-fit: cover; transition: filter 0.5s ease;"
+        >
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white;">
+          <h3 style="font-size: 1.5rem; font-family: 'Bodoni Moda', serif; margin: 0; text-transform: uppercase; letter-spacing: 0.08em;">Dresses</h3>
+        </div>
+      </div>
+      
+      <!-- Collection Card 2 -->
+      <div style="position: relative; overflow: hidden; border-radius: 0; aspect-ratio: 4/5; cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease;">
+        <img 
+          src="https://1gce5f-kz.myshopify.com/cdn/shop/files/collection-2.jpg?v=1" 
+          alt="Outerwear" 
+          style="width: 100%; height: 100%; object-fit: cover; transition: filter 0.5s ease;"
+        >
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white;">
+          <h3 style="font-size: 1.5rem; font-family: 'Bodoni Moda', serif; margin: 0; text-transform: uppercase; letter-spacing: 0.08em;">Outerwear</h3>
+        </div>
+      </div>
+      
+      <!-- Collection Card 3 -->
+      <div style="position: relative; overflow: hidden; border-radius: 0; aspect-ratio: 4/5; cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease;">
+        <img 
+          src="https://1gce5f-kz.myshopify.com/cdn/shop/files/collection-3.jpg?v=1" 
+          alt="Accessories" 
+          style="width: 100%; height: 100%; object-fit: cover; transition: filter 0.5s ease;"
+        >
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white;">
+          <h3 style="font-size: 1.5rem; font-family: 'Bodoni Moda', serif; margin: 0; text-transform: uppercase; letter-spacing: 0.08em;">Accessories</h3>
+        </div>
+      </div>
+      
+      <!-- Collection Card 4 -->
+      <div style="position: relative; overflow: hidden; border-radius: 0; aspect-ratio: 4/5; cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease;">
+        <img 
+          src="https://1gce5f-kz.myshopify.com/cdn/shop/files/collection-4.jpg?v=1" 
+          alt="Shoes" 
+          style="width: 100%; height: 100%; object-fit: cover; transition: filter 0.5s ease;"
+        >
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white;">
+          <h3 style="font-size: 1.5rem; font-family: 'Bodoni Moda', serif; margin: 0; text-transform: uppercase; letter-spacing: 0.08em;">Shoes</h3>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<style>
+  .custom-collections-grid div[style*="aspect-ratio"] img:hover {
+    filter: brightness(1.1) saturate(1.15);
+  }
+  
+  .custom-collections-grid div[style*="aspect-ratio"]:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+</style>
