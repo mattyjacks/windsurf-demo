@@ -1,0 +1,78 @@
+<!-- CUSTOM LIQUID SECTION: SOCIAL VIDEOS GALLERY -->
+<!-- Placement: Home page, after hero or collections section -->
+
+<style>
+  .LIQ-social-videos-section {
+    width: 100%;
+    background: #ffffff;
+    padding: 60px 20px;
+  }
+
+  .LIQ-social-videos-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .LIQ-social-video-wrapper {
+    width: 100%;
+    max-width: 267px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .LIQ-social-video-wrapper iframe {
+    width: 100%;
+    height: auto;
+    max-width: 267px;
+    aspect-ratio: 267 / 476;
+  }
+
+  @media (max-width: 1024px) {
+    .LIQ-social-videos-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      padding: 0 15px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .LIQ-social-videos-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 0 10px;
+    }
+
+    .LIQ-social-video-wrapper {
+      max-width: 100%;
+    }
+
+    .LIQ-social-video-wrapper iframe {
+      max-width: 100%;
+    }
+
+    .LIQ-social-videos-section {
+      padding: 40px 15px;
+    }
+  }
+</style>
+
+<div class="LIQ-social-videos-section">
+  <div class="LIQ-social-videos-container">
+    <div class="LIQ-social-video-wrapper">
+      <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1238532041112807%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+    </div>
+
+    <div class="LIQ-social-video-wrapper">
+      <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1209506751381063%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+    </div>
+
+    <div class="LIQ-social-video-wrapper">
+      <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1812931642748539%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+    </div>
+  </div>
+</div>

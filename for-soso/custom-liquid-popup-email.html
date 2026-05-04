@@ -1,0 +1,368 @@
+<!-- CUSTOM LIQUID SECTION: EMAIL SIGNUP POPUP -->
+<!-- Placement: Anywhere on the page (typically in theme.liquid or a dedicated section) -->
+<!-- Triggers after 15 seconds of page load -->
+
+<style>
+  .LIQ-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 9998;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .LIQ-popup-overlay.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .LIQ-popup-container {
+    position: relative;
+    background: linear-gradient(135deg, rgba(35, 45, 75, 0.98) 0%, rgba(50, 65, 100, 0.98) 100%);
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 520px;
+    padding: 50px 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    animation: LIQ-popupSlideIn 0.4s ease-out;
+    backdrop-filter: blur(10px);
+  }
+
+  @keyframes LIQ-popupSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .LIQ-popup-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+  }
+
+  .LIQ-popup-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+  }
+
+  .LIQ-popup-heading {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+    font-weight: 600;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .LIQ-popup-title {
+    font-size: clamp(36px, 8vw, 52px);
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 8px 0;
+    line-height: 1.1;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: -1px;
+  }
+
+  .LIQ-popup-subtitle {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0 0 12px 0;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .LIQ-popup-form {
+    margin-bottom: 20px;
+  }
+
+  .LIQ-popup-input {
+    width: 100%;
+    padding: 16px 18px;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-size: 14px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+  }
+
+  .LIQ-popup-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .LIQ-popup-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+  }
+
+  .LIQ-popup-checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+  }
+
+  .LIQ-popup-checkbox {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-right: 12px;
+    margin-top: 1px;
+    cursor: pointer;
+    accent-color: #f5f5f5;
+  }
+
+  .LIQ-popup-checkbox-label {
+    cursor: pointer;
+  }
+
+  .LIQ-popup-checkbox-label a {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .LIQ-popup-button {
+    width: 100%;
+    padding: 18px 24px;
+    background: #f5f5f5;
+    color: #1a1a1a;
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    margin-bottom: 18px;
+    font-family: inherit;
+    box-shadow: 0 4px 15px rgba(245, 245, 245, 0.2);
+  }
+
+  .LIQ-popup-button:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 245, 245, 0.3);
+  }
+
+  .LIQ-popup-button:active {
+    transform: translateY(0);
+  }
+
+  .LIQ-popup-decline {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 8px 0;
+    font-family: inherit;
+    transition: all 0.2s ease;
+  }
+
+  .LIQ-popup-decline:hover {
+    color: #fff;
+    text-decoration-thickness: 2px;
+  }
+
+  .LIQ-popup-benefits {
+    display: flex;
+    gap: 24px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .LIQ-popup-benefit {
+    flex: 1;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+  }
+
+  .LIQ-popup-benefit-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+
+  .LIQ-popup-benefit-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 600px) {
+    .LIQ-popup-container {
+      width: 95%;
+      padding: 40px 25px;
+      border-radius: 10px;
+    }
+
+    .LIQ-popup-title {
+      font-size: 36px;
+    }
+
+    .LIQ-popup-benefits {
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 35px;
+      padding-top: 25px;
+    }
+
+    .LIQ-popup-button {
+      padding: 16px 20px;
+    }
+  }
+</style>
+
+<div class="LIQ-popup-overlay" id="LIQ-popup-overlay">
+  <div class="LIQ-popup-container">
+    <button class="LIQ-popup-close" id="LIQ-popup-close" aria-label="Close popup">
+      ✕
+    </button>
+
+    <h2 class="LIQ-popup-heading">Sign up for email and</h2>
+    <h1 class="LIQ-popup-title">Enjoy $10 Off</h1>
+    <p class="LIQ-popup-subtitle">Your Next Order!</p>
+    <p style="font-size: 13px; color: rgba(255, 255, 255, 0.8); margin-bottom: 30px; line-height: 1.6;">
+      Stay informed about new products and sales.
+    </p>
+
+    <form class="LIQ-popup-form" id="LIQ-popup-form">
+      <input
+        type="email"
+        class="LIQ-popup-input"
+        placeholder="Enter your email"
+        required
+        aria-label="Email address"
+      >
+
+      <div class="LIQ-popup-checkbox-wrapper">
+        <input
+          type="checkbox"
+          id="LIQ-popup-agree"
+          class="LIQ-popup-checkbox"
+          required
+        >
+        <label for="LIQ-popup-agree" class="LIQ-popup-checkbox-label">
+          I agree to receive emails and the terms of <a href="/policies/privacy-policy" target="_blank">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button type="submit" class="LIQ-popup-button">
+        Get My $10 Off
+      </button>
+    </form>
+
+    <button class="LIQ-popup-decline" id="LIQ-popup-decline">
+      No thanks, I'd rather pay full price.
+    </button>
+
+    <div class="LIQ-popup-benefits">
+      <div class="LIQ-popup-benefit">
+        <div class="LIQ-popup-benefit-icon">🚚</div>
+        <div class="LIQ-popup-benefit-title">Free Shipping Worldwide</div>
+        <div>Orders over $69+</div>
+      </div>
+      <div class="LIQ-popup-benefit">
+        <div class="LIQ-popup-benefit-icon">📦</div>
+        <div class="LIQ-popup-benefit-title">Easy Return and Exchange</div>
+        <div>Within 14 Days</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const overlay = document.getElementById('LIQ-popup-overlay');
+  const closeBtn = document.getElementById('LIQ-popup-close');
+  const declineBtn = document.getElementById('LIQ-popup-decline');
+  const form = document.getElementById('LIQ-popup-form');
+
+  const POPUP_SHOWN_KEY = 'LIQ-popup-shown';
+  const POPUP_DELAY = 15000;
+
+  function showPopup() {
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    localStorage.setItem(POPUP_SHOWN_KEY, 'true');
+  }
+
+  function closePopup() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closePopup);
+  declineBtn.addEventListener('click', closePopup);
+
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) {
+      closePopup();
+    }
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = form.querySelector('input[type="email"]').value;
+    const checkbox = document.getElementById('LIQ-popup-agree').checked;
+
+    if (email && checkbox) {
+      console.log('Email signup:', email);
+      closePopup();
+
+      if (window.Shopify && window.Shopify.customer) {
+        Shopify.postMessage({
+          type: 'subscribe',
+          email: email
+        });
+      }
+    }
+  });
+
+  if (!localStorage.getItem(POPUP_SHOWN_KEY)) {
+    setTimeout(showPopup, POPUP_DELAY);
+  }
+})();
+</script>

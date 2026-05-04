@@ -1,0 +1,168 @@
+<!-- CUSTOM LIQUID SECTION: HERO BANNER WITH VIDEO BACKGROUND -->
+<!-- Placement: Home page, at the very top of the main content area (before collections) -->
+
+<style>
+  .LIQ-hero-video-banner {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .LIQ-hero-video-banner video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .LIQ-hero-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 1;
+  }
+
+  .LIQ-hero-video-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+    width: 95%;
+    max-width: 800px;
+  }
+
+  .LIQ-hero-video-title {
+    font-size: clamp(2rem, 8vw, 4rem);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: capitalize;
+    margin: 0;
+    line-height: 1;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+    animation: LIQ-fadeInDown 0.8s ease-out 0.2s backwards;
+  }
+
+  .LIQ-hero-video-subtitle {
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+    font-family: Geist, sans-serif;
+    letter-spacing: 0.06em;
+    margin-top: 1.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+    animation: LIQ-fadeInUp 0.8s ease-out 0.4s backwards;
+    line-height: 1.6;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .LIQ-hero-video-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 14px 28px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    font-family: Geist, sans-serif;
+    font-size: 0.875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, opacity 0.3s ease;
+    font-weight: 600;
+    opacity: 1;
+    animation: LIQ-scaleIn 0.6s ease-out 0.6s backwards;
+  }
+
+  .LIQ-hero-video-button:hover {
+    background: #333;
+    opacity: 0.85;
+  }
+
+  @keyframes LIQ-fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes LIQ-fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes LIQ-scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .LIQ-hero-video-banner {
+      height: 50vh;
+    }
+
+    .LIQ-hero-video-overlay {
+      background: rgba(0, 0, 0, 0.4);
+    }
+  }
+</style>
+
+<div class="LIQ-hero-video-banner">
+  
+  <!-- Background Video -->
+  <video 
+    autoplay 
+    muted 
+    loop 
+    playsinline
+    preload="metadata"
+  >
+    <source src="https://cdn.shopify.com/videos/c/o/v/6119afb0a57c4b0691380cb4b88f3158.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  
+  <!-- Overlay -->
+  <div class="LIQ-hero-video-overlay"></div>
+  
+  <!-- Text Content -->
+  <div class="LIQ-hero-video-content">
+    <h1 class="LIQ-hero-video-title">
+      Ketevanne's
+    </h1>
+    <p class="LIQ-hero-video-subtitle">
+      Fashion for the wild at heart. Curate your signature style with iconic pieces that celebrate your individuality and fearless spirit.
+    </p>
+    <a href="/collections/all" class="LIQ-hero-video-button">
+      Shop All Styles
+    </a>
+  </div>
+</div>
