@@ -1,0 +1,185 @@
+<!-- CUSTOM LIQUID SECTION: EXIT INTENT POPUP -->
+<!-- Triggers when user moves mouse to top of screen (exit intent) -->
+<!-- Shows once per session -->
+
+<style>
+  .LIQ-exit-intent-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 9998;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .LIQ-exit-intent-overlay.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .LIQ-exit-intent-modal {
+    position: relative;
+    background: linear-gradient(135deg, #2d3755 0%, #3c4b6e 100%);
+    border-radius: 12px;
+    padding: 50px 40px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    animation: LIQ-exitPopupSlideIn 0.4s ease-out;
+  }
+
+  @keyframes LIQ-exitPopupSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .LIQ-exit-intent-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+
+  .LIQ-exit-intent-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+  }
+
+  .LIQ-exit-intent-text {
+    font-size: clamp(24px, 6vw, 36px);
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 30px 0;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  .LIQ-exit-intent-button {
+    display: inline-block;
+    padding: 16px 32px;
+    background: #f5f5f5;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-family: Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(245, 245, 245, 0.2);
+  }
+
+  .LIQ-exit-intent-button:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 245, 245, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .LIQ-exit-intent-modal {
+      padding: 40px 25px;
+      max-width: 90%;
+    }
+
+    .LIQ-exit-intent-text {
+      font-size: 24px;
+      margin-bottom: 25px;
+    }
+
+    .LIQ-exit-intent-button {
+      padding: 14px 28px;
+      font-size: 12px;
+    }
+  }
+</style>
+
+<div class="LIQ-exit-intent-overlay" id="LIQ-exit-intent-overlay">
+  <div class="LIQ-exit-intent-modal">
+    <button class="LIQ-exit-intent-close" id="LIQ-exit-intent-close" aria-label="Close">
+      ✕
+    </button>
+    <h2 class="LIQ-exit-intent-text">Don't Leave Empty Handed!</h2>
+    <a href="/collections/all" class="LIQ-exit-intent-button" id="LIQ-exit-intent-button">
+      Continue Shopping
+    </a>
+  </div>
+</div>
+
+<script>
+(function() {
+  const overlay = document.getElementById('LIQ-exit-intent-overlay');
+  const closeBtn = document.getElementById('LIQ-exit-intent-close');
+  const continueBtn = document.getElementById('LIQ-exit-intent-button');
+
+  const EXIT_INTENT_SHOWN_KEY = 'LIQ-exit-intent-shown';
+  const MOUSE_THRESHOLD = 5;
+  let hasMouseEnteredPage = false;
+
+  function hideModal() {
+    overlay.classList.remove('active');
+  }
+
+  function showModal() {
+    if (!sessionStorage.getItem(EXIT_INTENT_SHOWN_KEY) && hasMouseEnteredPage) {
+      overlay.classList.add('active');
+      sessionStorage.setItem(EXIT_INTENT_SHOWN_KEY, 'true');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  closeBtn.addEventListener('click', hideModal);
+  continueBtn.addEventListener('click', hideModal);
+
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) {
+      hideModal();
+    }
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (e.clientY > MOUSE_THRESHOLD) {
+      hasMouseEnteredPage = true;
+    }
+
+    if (e.clientY <= MOUSE_THRESHOLD && hasMouseEnteredPage && !sessionStorage.getItem(EXIT_INTENT_SHOWN_KEY)) {
+      showModal();
+    }
+  });
+
+  document.addEventListener('mouseleave', function() {
+    if (hasMouseEnteredPage && !sessionStorage.getItem(EXIT_INTENT_SHOWN_KEY)) {
+      showModal();
+    }
+  });
+})();
+</script>
